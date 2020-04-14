@@ -21,7 +21,7 @@ namespace CommunityPartners.Models
         public int? HomeLocationId { get; set; }
         public string PartnerPhone { get; set; }
         public int ReOccurringDayRequest { get; set; }
-        public string RequestReceiveOrDonate { get; set; }
+        public bool RequestReceiveOrDonate { get; set; }
         public double AmountDonated { get; set; }
         public string Itemdonated { get; set; }
         public double MilesTravelled { get; set; }
@@ -33,6 +33,6 @@ namespace CommunityPartners.Models
         public string PartnerLat { get; set; }
         public RequestService RequestService { get; set; }
         public DonateService DonateService { get; set; }
-        //public WWindow WWindow { get; set; } WWindow is a class/model
+       
     }
 }

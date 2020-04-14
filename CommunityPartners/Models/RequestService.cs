@@ -15,6 +15,7 @@ namespace CommunityPartners.Models
        
         public DateTime? RequestDate { get; set; }
         public string RequestItem { get; set; }
+        public string GroceryList { get; set; }
         
     }
 }
