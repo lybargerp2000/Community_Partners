@@ -12,10 +12,16 @@ namespace CommunityPartners.Models
 
         [ForeignKey("PartnerAddress")]
         public int PartnerId { get; set; }
+        [ForeignKey("Donateservice")]
+        public int DonateServiceId { get; set; }
        
         public DateTime? RequestDate { get; set; }
         public string RequestItem { get; set; }
         public string GroceryList { get; set; }
+        public bool AcceptRequest { get; set; }
+        public int RequestDayOfWeek { get; set; }
+        public double TransactionAmount { get; set; }
+
         
     }
 }

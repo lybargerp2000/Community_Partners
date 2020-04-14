@@ -15,11 +15,11 @@ namespace CommunityPartners.Models
         public string RequestItem { get; set; }
         [ForeignKey("PartnerId)")]
         public int PartnerId { get; set; }
-        public int Date { get; set; }
+        public DateTime Date { get; set; }
         public int RatingHelpfullness { get; set; }
         public int Radius { get; set; }
         [ForeignKey("TravalRadiusId")]
         public int TravelRadiusId { get; set; }
-        public bool TransactionAmount { get; set; }
+        public double TransactionAmount { get; set; }
     }
 }
