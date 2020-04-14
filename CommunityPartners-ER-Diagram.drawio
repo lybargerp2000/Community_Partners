@@ -1,4 +1,4 @@
-<mxfile type="github" version="12.9.11" etag="IggAyYrROhtazaWgcTy0" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.18362" modified="2020-04-14T15:08:04.871Z" host="app.diagrams.net">
+<mxfile type="github" version="12.9.11" etag="G-_7pRX1U4Z5O7qfKv-5" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.18362" modified="2020-04-14T15:15:42.630Z" host="app.diagrams.net">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel grid="1" dx="1775" dy="1697" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -57,7 +57,7 @@
         <mxCell id="w6MAxaTwaF9I9nZjJXPJ-28" value="PK" parent="w6MAxaTwaF9I9nZjJXPJ-27" style="shape=partialRectangle;top=0;left=0;bottom=0;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;part=1;fontSize=12;" vertex="1" connectable="0">
           <mxGeometry as="geometry" width="30" height="30" />
         </mxCell>
-        <mxCell id="w6MAxaTwaF9I9nZjJXPJ-29" value="ViewerLocationViewerId&#xa;ViewerLocationName&#xa;ViewerLocationAddress&#xa;ViewerLocationCity&#xa;ViewerLocationStateId&#xa;ViewerLocationZip&#xa;ViewerLocationLong&#xa;ViewerLocationLat&#xa;ViewerIsHomeLocation" parent="w6MAxaTwaF9I9nZjJXPJ-26" style="shape=partialRectangle;top=0;left=0;right=0;bottom=0;align=left;verticalAlign=top;fillColor=none;spacingLeft=34;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;dropTarget=0;fontSize=12;" vertex="1">
+        <mxCell id="w6MAxaTwaF9I9nZjJXPJ-29" value="PartnerId&#xa;RequestDate&#xa;RequestItem&#xa;GroceryList&#xa;" parent="w6MAxaTwaF9I9nZjJXPJ-26" style="shape=partialRectangle;top=0;left=0;right=0;bottom=0;align=left;verticalAlign=top;fillColor=none;spacingLeft=34;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;dropTarget=0;fontSize=12;" vertex="1">
           <mxGeometry as="geometry" y="56" width="180" height="134" />
         </mxCell>
         <mxCell id="w6MAxaTwaF9I9nZjJXPJ-30" value="FK&#xa;&#xa;&#xa;&#xa;" parent="w6MAxaTwaF9I9nZjJXPJ-29" style="shape=partialRectangle;top=0;left=0;bottom=0;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;part=1;fontSize=12;" vertex="1" connectable="0">
