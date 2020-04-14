@@ -18,8 +18,9 @@ namespace CommunityPartners.Models
         public DateTime Date { get; set; }
         public int RatingHelpfullness { get; set; }
         public int Radius { get; set; }
-        [ForeignKey("TravalRadiusId")]
-        public int TravelRadiusId { get; set; }
+        [ForeignKey("DonateRadiusId")]
+        public int DonateRadiusId { get; set; }
+        
         public double TransactionAmount { get; set; }
     }
 }
