@@ -14,6 +14,8 @@ namespace CommunityPartners.Models
         public int PartnerId { get; set; }
         [ForeignKey("Donateservice")]
         public int DonateServiceId { get; set; }
+        [ForeignKey("PayPal")]
+        public int PayPalId { get; set; }
        
         public DateTime? RequestDate { get; set; }
         public string RequestItem { get; set; }
@@ -21,6 +23,7 @@ namespace CommunityPartners.Models
         public bool AcceptRequest { get; set; }
         public int RequestDayOfWeek { get; set; }
         public double TransactionAmount { get; set; }
+        public int RatingEntry { get; set; }
 
         
     }

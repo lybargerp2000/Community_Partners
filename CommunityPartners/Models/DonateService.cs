@@ -20,7 +20,8 @@ namespace CommunityPartners.Models
         public int Radius { get; set; }
         [ForeignKey("DonateRadiusId")]
         public int DonateRadiusId { get; set; }
-        
+        [ForeignKey("PayPal")]
+        public int PayPalId { get; set; }
         public double TransactionAmount { get; set; }
     }
 }

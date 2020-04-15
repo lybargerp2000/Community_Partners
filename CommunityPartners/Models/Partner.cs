@@ -31,6 +31,9 @@ namespace CommunityPartners.Models
         public string PartnerZip { get; set; }
         public string PartnerLong { get; set; }
         public string PartnerLat { get; set; }
+        [ForeignKey("PayPal")]
+        public int PayPalId { get; set; }
+        public double TransactionHistory { get; set; }
         public RequestService RequestService { get; set; }
         public DonateService DonateService { get; set; }
        

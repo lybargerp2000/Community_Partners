@@ -18,6 +18,8 @@ namespace CommunityPartners.Models
         public string FirstName { get; set; }
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
+        [ForeignKey("PartnerId")]
+        public int PartnerId { get; set; }
         [NotMapped]
         public IEnumerable<Partner> AmountDonated { get; set; }
         [NotMapped]
