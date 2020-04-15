@@ -12,7 +12,7 @@ namespace CommunityPartners.Models
         [ForeignKey("RequestService")]
         public int RequestServiceId { get; set; }
         [ForeignKey("DonateService")]
-        public int RequestserviceId { get; set; }
+        public int DonateServiceId { get; set; }
         public double TransactionHistory { get; set; }
         public double TransactionAmount { get; set; }
     }
