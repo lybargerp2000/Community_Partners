@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CommunityPartners.Migrations
 {
-    public partial class init1 : Migration
+    public partial class intit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -324,12 +324,12 @@ namespace CommunityPartners.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "56b37c6d-9018-4969-8332-042c3ed8eb55", "ec4fda9e-be1d-4014-8ca2-c7c6d8dbe875", "Admin", "ADMIN" });
+                values: new object[] { "f12fff9e-d9ef-4722-97e7-0ee13c297987", "58cc6a00-c825-45f9-9258-fed58556be3d", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "5053a205-534d-4be4-a9c5-d63f2e2c9c1f", "8f289a70-9cbd-4c51-bff0-819e7dafb15d", "Partner", "PARTNER" });
+                values: new object[] { "e6918f3e-4877-47ae-96ca-a6661327e201", "bc3a02a4-fb3c-45fb-bb25-89c471d48a13", "Partner", "PARTNER" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Admins_IdentityUserId",

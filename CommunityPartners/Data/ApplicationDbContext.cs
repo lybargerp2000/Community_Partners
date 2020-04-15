@@ -33,11 +33,11 @@ namespace CommunityPartners.Data
         }
         public DbSet<Models.Partner> Partners { get; set; }
         public DbSet<Models.Admin> Admins { get; set; }
-        public DbSet<Models.DonateRadius> DonateRadii { get; set; }
         public DbSet<Models.DonateService> DonateServices { get; set; }
-        public DbSet<Models.GoogleLocation> GoogleLocations { get; set; }
         public DbSet<Models.PayPal> PayPals { get; set; }
         public DbSet<Models.RatingHelpfulness> RatingHelpfulnesses { get; set; }
         public DbSet<Models.RequestService> RequestServices { get; set; }
+        public DbSet<Models.DonateServicePartners> DonateServicePartnersers { get; set; }
+        public DbSet<Models.RequestServicePartners> RequestServicePartnersers { get; set; }
     }
 }

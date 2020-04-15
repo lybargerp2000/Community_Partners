@@ -301,15 +301,15 @@ namespace CommunityPartners.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "48289b6e-88ef-4958-a120-7ae99bb45781",
-                            ConcurrencyStamp = "2fc22565-e77e-455b-94b6-6ca34b59ed97",
+                            Id = "f12fff9e-d9ef-4722-97e7-0ee13c297987",
+                            ConcurrencyStamp = "58cc6a00-c825-45f9-9258-fed58556be3d",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "6becf06e-6199-441d-b288-d1c72f4d78b0",
-                            ConcurrencyStamp = "7c126810-d2b0-41ac-9068-c96e687a4de5",
+                            Id = "e6918f3e-4877-47ae-96ca-a6661327e201",
+                            ConcurrencyStamp = "bc3a02a4-fb3c-45fb-bb25-89c471d48a13",
                             Name = "Partner",
                             NormalizedName = "PARTNER"
                         });

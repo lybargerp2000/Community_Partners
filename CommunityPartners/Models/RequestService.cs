@@ -10,10 +10,9 @@ namespace CommunityPartners.Models
     {
         public int RequestServiceId { get; set; }
 
-        [ForeignKey("PartnerAddress")]
+        [ForeignKey("PartnerInfo")]
         public int PartnerId { get; set; }
-        [ForeignKey("Donateservice")]
-        public int DonateServiceId { get; set; }
+        
         [ForeignKey("PayPal")]
         public int PayPalId { get; set; }
        
