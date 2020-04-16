@@ -13,7 +13,8 @@ namespace CommunityPartners.Models
         [ForeignKey("PartnerId)")]
         public int PartnerId { get; set; }
         public DateTime Date { get; set; }
-        public int RadiusMiles {get; set;}
+        public int DonationRadiusMiles {get; set;}
         public int Zipcode { get; set; }
+        public string Description { get; set; }
     }
 }

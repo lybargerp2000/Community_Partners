@@ -54,7 +54,7 @@ namespace CommunityPartners.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DonateServiceId,PartnerId,Date,RadiusMiles,Zipcode")] DonateService donateService)
+        public async Task<IActionResult> Create([Bind("DonateServiceId,PartnerId,Date,DonationRadiusMiles,Zipcode,Description")] DonateService donateService)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace CommunityPartners.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DonateServiceId,PartnerId,Date,RadiusMiles,Zipcode")] DonateService donateService)
+        public async Task<IActionResult> Edit(int id, [Bind("DonateServiceId,PartnerId,Date,DonationRadiusMiles,Zipcode,Description")] DonateService donateService)
         {
             if (id != donateService.DonateServiceId)
             {
