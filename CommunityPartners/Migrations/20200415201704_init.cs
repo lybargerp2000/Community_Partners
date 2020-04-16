@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CommunityPartners.Migrations
 {
-    public partial class intit : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -47,28 +47,20 @@ namespace CommunityPartners.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "DonateRadii",
+                name: "DonateServicePartnersers",
                 columns: table => new
                 {
-                    DonateRadiusId = table.Column<int>(nullable: false)
+                    DonateServicePartnersId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RadiusMiles = table.Column<int>(nullable: false)
+                    PartnerId = table.Column<int>(nullable: false),
+                    RequestDate = table.Column<DateTime>(nullable: false),
+                    Accepted = table.Column<bool>(nullable: false),
+                    PayPalId = table.Column<int>(nullable: false),
+                    RatingHelpfulnessId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DonateRadii", x => x.DonateRadiusId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "GoogleLocations",
-                columns: table => new
-                {
-                    GoogleLocationId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_GoogleLocations", x => x.GoogleLocationId);
+                    table.PrimaryKey("PK_DonateServicePartnersers", x => x.DonateServicePartnersId);
                 });
 
             migrationBuilder.CreateTable(
@@ -100,6 +92,23 @@ namespace CommunityPartners.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_RatingHelpfulnesses", x => x.RatingHelpfulnessId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RequestServicePartnersers",
+                columns: table => new
+                {
+                    RequestServicePartnersId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PartnerId = table.Column<int>(nullable: false),
+                    ProposalDate = table.Column<DateTime>(nullable: false),
+                    Accepted = table.Column<bool>(nullable: false),
+                    RatingHelpfulnessId = table.Column<int>(nullable: false),
+                    PayPalId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RequestServicePartnersers", x => x.RequestServicePartnersId);
                 });
 
             migrationBuilder.CreateTable(
@@ -272,15 +281,10 @@ namespace CommunityPartners.Migrations
                 {
                     DonateServiceId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RequestServiceId = table.Column<int>(nullable: false),
-                    RequestItem = table.Column<string>(nullable: true),
                     PartnerId = table.Column<int>(nullable: false),
                     Date = table.Column<DateTime>(nullable: false),
-                    RatingHelpfullness = table.Column<int>(nullable: false),
-                    Radius = table.Column<int>(nullable: false),
-                    DonateRadiusId = table.Column<int>(nullable: false),
-                    PayPalId = table.Column<int>(nullable: false),
-                    TransactionAmount = table.Column<double>(nullable: false)
+                    RadiusMiles = table.Column<int>(nullable: false),
+                    Zipcode = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -300,7 +304,6 @@ namespace CommunityPartners.Migrations
                     RequestServiceId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PartnerId = table.Column<int>(nullable: false),
-                    DonateServiceId = table.Column<int>(nullable: false),
                     PayPalId = table.Column<int>(nullable: false),
                     RequestDate = table.Column<DateTime>(nullable: true),
                     RequestItem = table.Column<string>(nullable: true),
@@ -324,12 +327,12 @@ namespace CommunityPartners.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "f12fff9e-d9ef-4722-97e7-0ee13c297987", "58cc6a00-c825-45f9-9258-fed58556be3d", "Admin", "ADMIN" });
+                values: new object[] { "90f15a62-0bd2-4997-982a-7eb62ee09074", "7cb39d17-5a00-40ea-8b5b-a2111b3bec74", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "e6918f3e-4877-47ae-96ca-a6661327e201", "bc3a02a4-fb3c-45fb-bb25-89c471d48a13", "Partner", "PARTNER" });
+                values: new object[] { "19905d2c-b33e-49e3-ae5e-3d7e94e51d04", "4d928d45-6f91-438b-8425-efc3efb89d4e", "Partner", "PARTNER" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Admins_IdentityUserId",
@@ -414,19 +417,19 @@ namespace CommunityPartners.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "DonateRadii");
+                name: "DonateServicePartnersers");
 
             migrationBuilder.DropTable(
                 name: "DonateServices");
-
-            migrationBuilder.DropTable(
-                name: "GoogleLocations");
 
             migrationBuilder.DropTable(
                 name: "PayPals");
 
             migrationBuilder.DropTable(
                 name: "RatingHelpfulnesses");
+
+            migrationBuilder.DropTable(
+                name: "RequestServicePartnersers");
 
             migrationBuilder.DropTable(
                 name: "RequestServices");

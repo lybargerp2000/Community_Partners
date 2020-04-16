@@ -45,21 +45,6 @@ namespace CommunityPartners.Migrations
                     b.ToTable("Admins");
                 });
 
-            modelBuilder.Entity("CommunityPartners.Models.DonateRadius", b =>
-                {
-                    b.Property<int>("DonateRadiusId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("RadiusMiles")
-                        .HasColumnType("int");
-
-                    b.HasKey("DonateRadiusId");
-
-                    b.ToTable("DonateRadii");
-                });
-
             modelBuilder.Entity("CommunityPartners.Models.DonateService", b =>
                 {
                     b.Property<int>("DonateServiceId")
@@ -70,29 +55,14 @@ namespace CommunityPartners.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DonateRadiusId")
-                        .HasColumnType("int");
-
                     b.Property<int>("PartnerId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PayPalId")
+                    b.Property<int>("RadiusMiles")
                         .HasColumnType("int");
 
-                    b.Property<int>("Radius")
+                    b.Property<int>("Zipcode")
                         .HasColumnType("int");
-
-                    b.Property<int>("RatingHelpfullness")
-                        .HasColumnType("int");
-
-                    b.Property<string>("RequestItem")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RequestServiceId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("TransactionAmount")
-                        .HasColumnType("float");
 
                     b.HasKey("DonateServiceId");
 
@@ -102,16 +72,31 @@ namespace CommunityPartners.Migrations
                     b.ToTable("DonateServices");
                 });
 
-            modelBuilder.Entity("CommunityPartners.Models.GoogleLocation", b =>
+            modelBuilder.Entity("CommunityPartners.Models.DonateServicePartners", b =>
                 {
-                    b.Property<int>("GoogleLocationId")
+                    b.Property<int>("DonateServicePartnersId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.HasKey("GoogleLocationId");
+                    b.Property<bool>("Accepted")
+                        .HasColumnType("bit");
 
-                    b.ToTable("GoogleLocations");
+                    b.Property<int>("PartnerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PayPalId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RatingHelpfulnessId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("RequestDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("DonateServicePartnersId");
+
+                    b.ToTable("DonateServicePartnersers");
                 });
 
             modelBuilder.Entity("CommunityPartners.Models.Partner", b =>
@@ -237,9 +222,6 @@ namespace CommunityPartners.Migrations
                     b.Property<bool>("AcceptRequest")
                         .HasColumnType("bit");
 
-                    b.Property<int>("DonateServiceId")
-                        .HasColumnType("int");
-
                     b.Property<string>("GroceryList")
                         .HasColumnType("nvarchar(max)");
 
@@ -272,6 +254,33 @@ namespace CommunityPartners.Migrations
                     b.ToTable("RequestServices");
                 });
 
+            modelBuilder.Entity("CommunityPartners.Models.RequestServicePartners", b =>
+                {
+                    b.Property<int>("RequestServicePartnersId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Accepted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("PartnerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PayPalId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ProposalDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("RatingHelpfulnessId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RequestServicePartnersId");
+
+                    b.ToTable("RequestServicePartnersers");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -301,15 +310,15 @@ namespace CommunityPartners.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f12fff9e-d9ef-4722-97e7-0ee13c297987",
-                            ConcurrencyStamp = "58cc6a00-c825-45f9-9258-fed58556be3d",
+                            Id = "90f15a62-0bd2-4997-982a-7eb62ee09074",
+                            ConcurrencyStamp = "7cb39d17-5a00-40ea-8b5b-a2111b3bec74",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "e6918f3e-4877-47ae-96ca-a6661327e201",
-                            ConcurrencyStamp = "bc3a02a4-fb3c-45fb-bb25-89c471d48a13",
+                            Id = "19905d2c-b33e-49e3-ae5e-3d7e94e51d04",
+                            ConcurrencyStamp = "4d928d45-6f91-438b-8425-efc3efb89d4e",
                             Name = "Partner",
                             NormalizedName = "PARTNER"
                         });
