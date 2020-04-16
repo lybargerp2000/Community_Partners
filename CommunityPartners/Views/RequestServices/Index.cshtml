@@ -1,0 +1,77 @@
+﻿@model IEnumerable<CommunityPartners.Models.RequestService>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PayPalId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequestDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequestItem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GroceryList)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AcceptRequest)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequestDayOfWeek)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TransactionAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RatingEntry)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PayPalId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestItem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GroceryList)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AcceptRequest)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestDayOfWeek)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransactionAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RatingEntry)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.RequestServiceId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.RequestServiceId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.RequestServiceId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

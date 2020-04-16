@@ -1,0 +1,72 @@
+﻿@model CommunityPartners.Models.RequestService
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>RequestService</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PartnerId" class="control-label"></label>
+                <select asp-for="PartnerId" class ="form-control" asp-items="ViewBag.PartnerId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PayPalId" class="control-label"></label>
+                <input asp-for="PayPalId" class="form-control" />
+                <span asp-validation-for="PayPalId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RequestDate" class="control-label"></label>
+                <input asp-for="RequestDate" class="form-control" />
+                <span asp-validation-for="RequestDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RequestItem" class="control-label"></label>
+                <input asp-for="RequestItem" class="form-control" />
+                <span asp-validation-for="RequestItem" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GroceryList" class="control-label"></label>
+                <input asp-for="GroceryList" class="form-control" />
+                <span asp-validation-for="GroceryList" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="AcceptRequest" /> @Html.DisplayNameFor(model => model.AcceptRequest)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="RequestDayOfWeek" class="control-label"></label>
+                <input asp-for="RequestDayOfWeek" class="form-control" />
+                <span asp-validation-for="RequestDayOfWeek" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TransactionAmount" class="control-label"></label>
+                <input asp-for="TransactionAmount" class="form-control" />
+                <span asp-validation-for="TransactionAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RatingEntry" class="control-label"></label>
+                <input asp-for="RatingEntry" class="form-control" />
+                <span asp-validation-for="RatingEntry" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
