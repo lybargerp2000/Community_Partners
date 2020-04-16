@@ -54,16 +54,30 @@ namespace CommunityPartners.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RequestServiceId,PartnerId,PayPalId,RequestDate,RequestItem,GroceryList,AcceptRequest,RequestDayOfWeek,TransactionAmount,RatingEntry")] RequestService requestService)
+        public ActionResult Create(RequestService requestService)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _context.Add(requestService);
-                await _context.SaveChangesAsync();
+                _context.RequestServices.Add(requestService);
+                _context.SaveChanges();
+
                 return RedirectToAction(nameof(Index));
             }
-            return View(requestService);
+            catch
+            {
+                return View();
+            }
         }
+        //public async Task<IActionResult> Create(RequestService requestService)
+        //{
+        //    //if (ModelState.IsValid)
+        //    //{
+        //        _context.Add(requestService);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
+        //    //}
+        //    return View(requestService);
+        //}
 
         // GET: RequestServices/Edit/5
         public async Task<IActionResult> Edit(int? id)
