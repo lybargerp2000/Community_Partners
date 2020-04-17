@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CommunityPartners.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200416134754_number2")]
-    partial class number2
+    [Migration("20200417145240_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -70,9 +70,6 @@ namespace CommunityPartners.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("DonateServiceId");
-
-                    b.HasIndex("PartnerId")
-                        .IsUnique();
 
                     b.ToTable("DonateServices");
                 });
@@ -253,9 +250,6 @@ namespace CommunityPartners.Migrations
 
                     b.HasKey("RequestServiceId");
 
-                    b.HasIndex("PartnerId")
-                        .IsUnique();
-
                     b.ToTable("RequestServices");
                 });
 
@@ -315,15 +309,15 @@ namespace CommunityPartners.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "01313b0f-4df1-43c6-b4de-488f7eecc343",
-                            ConcurrencyStamp = "05ef0092-11fb-45c0-8dcc-8485cb479de3",
+                            Id = "3eebafc4-9809-4ad2-b46a-c9020801be87",
+                            ConcurrencyStamp = "3037e24b-6097-459a-8b49-a8d14cf05ff1",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "ea6c9a4e-e017-43f9-b746-a88711c7c692",
-                            ConcurrencyStamp = "39187270-5f41-4e5c-b4aa-10a890b27f63",
+                            Id = "f0422804-58c2-4058-afb5-68c48093cc93",
+                            ConcurrencyStamp = "8c015776-1844-465a-8c8c-cf710f7ce432",
                             Name = "Partner",
                             NormalizedName = "PARTNER"
                         });
@@ -505,29 +499,11 @@ namespace CommunityPartners.Migrations
                         .HasForeignKey("IdentityUserId");
                 });
 
-            modelBuilder.Entity("CommunityPartners.Models.DonateService", b =>
-                {
-                    b.HasOne("CommunityPartners.Models.Partner", null)
-                        .WithOne("DonateService")
-                        .HasForeignKey("CommunityPartners.Models.DonateService", "PartnerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("CommunityPartners.Models.Partner", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
                         .WithMany()
                         .HasForeignKey("IdentityUserId");
-                });
-
-            modelBuilder.Entity("CommunityPartners.Models.RequestService", b =>
-                {
-                    b.HasOne("CommunityPartners.Models.Partner", null)
-                        .WithOne("RequestService")
-                        .HasForeignKey("CommunityPartners.Models.RequestService", "PartnerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

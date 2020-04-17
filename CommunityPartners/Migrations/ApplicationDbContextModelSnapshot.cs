@@ -307,15 +307,15 @@ namespace CommunityPartners.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "04d81418-f80b-4d20-87a9-72dfd404a5b1",
-                            ConcurrencyStamp = "7e67ef5b-3dda-4bbe-9c34-6209b39b0da4",
+                            Id = "3eebafc4-9809-4ad2-b46a-c9020801be87",
+                            ConcurrencyStamp = "3037e24b-6097-459a-8b49-a8d14cf05ff1",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "6e63e8b0-dedd-44ee-9bf7-ae0aebec6d7f",
-                            ConcurrencyStamp = "f87ba9aa-f2ba-46b4-ad7e-7b96ac83fae2",
+                            Id = "f0422804-58c2-4058-afb5-68c48093cc93",
+                            ConcurrencyStamp = "8c015776-1844-465a-8c8c-cf710f7ce432",
                             Name = "Partner",
                             NormalizedName = "PARTNER"
                         });

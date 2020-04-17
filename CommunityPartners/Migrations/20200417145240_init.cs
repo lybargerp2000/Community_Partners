@@ -64,6 +64,23 @@ namespace CommunityPartners.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "DonateServices",
+                columns: table => new
+                {
+                    DonateServiceId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PartnerId = table.Column<int>(nullable: false),
+                    Date = table.Column<DateTime>(nullable: false),
+                    DonationRadiusMiles = table.Column<int>(nullable: false),
+                    Zipcode = table.Column<int>(nullable: false),
+                    Description = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DonateServices", x => x.DonateServiceId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PayPals",
                 columns: table => new
                 {
@@ -109,6 +126,27 @@ namespace CommunityPartners.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_RequestServicePartnersers", x => x.RequestServicePartnersId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RequestServices",
+                columns: table => new
+                {
+                    RequestServiceId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PartnerId = table.Column<int>(nullable: false),
+                    PayPalId = table.Column<int>(nullable: false),
+                    RequestDate = table.Column<DateTime>(nullable: true),
+                    RequestItem = table.Column<string>(nullable: true),
+                    GroceryList = table.Column<string>(nullable: true),
+                    AcceptRequest = table.Column<bool>(nullable: false),
+                    RequestDayOfWeek = table.Column<int>(nullable: false),
+                    TransactionAmount = table.Column<double>(nullable: false),
+                    RatingEntry = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RequestServices", x => x.RequestServiceId);
                 });
 
             migrationBuilder.CreateTable(
@@ -275,64 +313,15 @@ namespace CommunityPartners.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "DonateServices",
-                columns: table => new
-                {
-                    DonateServiceId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PartnerId = table.Column<int>(nullable: false),
-                    Date = table.Column<DateTime>(nullable: false),
-                    RadiusMiles = table.Column<int>(nullable: false),
-                    Zipcode = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DonateServices", x => x.DonateServiceId);
-                    table.ForeignKey(
-                        name: "FK_DonateServices_Partners_PartnerId",
-                        column: x => x.PartnerId,
-                        principalTable: "Partners",
-                        principalColumn: "PartnerId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "RequestServices",
-                columns: table => new
-                {
-                    RequestServiceId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PartnerId = table.Column<int>(nullable: false),
-                    PayPalId = table.Column<int>(nullable: false),
-                    RequestDate = table.Column<DateTime>(nullable: true),
-                    RequestItem = table.Column<string>(nullable: true),
-                    GroceryList = table.Column<string>(nullable: true),
-                    AcceptRequest = table.Column<bool>(nullable: false),
-                    RequestDayOfWeek = table.Column<int>(nullable: false),
-                    TransactionAmount = table.Column<double>(nullable: false),
-                    RatingEntry = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RequestServices", x => x.RequestServiceId);
-                    table.ForeignKey(
-                        name: "FK_RequestServices_Partners_PartnerId",
-                        column: x => x.PartnerId,
-                        principalTable: "Partners",
-                        principalColumn: "PartnerId",
-                        onDelete: ReferentialAction.Cascade);
-                });
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "3eebafc4-9809-4ad2-b46a-c9020801be87", "3037e24b-6097-459a-8b49-a8d14cf05ff1", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "90f15a62-0bd2-4997-982a-7eb62ee09074", "7cb39d17-5a00-40ea-8b5b-a2111b3bec74", "Admin", "ADMIN" });
-
-            migrationBuilder.InsertData(
-                table: "AspNetRoles",
-                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "19905d2c-b33e-49e3-ae5e-3d7e94e51d04", "4d928d45-6f91-438b-8425-efc3efb89d4e", "Partner", "PARTNER" });
+                values: new object[] { "f0422804-58c2-4058-afb5-68c48093cc93", "8c015776-1844-465a-8c8c-cf710f7ce432", "Partner", "PARTNER" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Admins_IdentityUserId",
@@ -379,21 +368,9 @@ namespace CommunityPartners.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DonateServices_PartnerId",
-                table: "DonateServices",
-                column: "PartnerId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Partners_IdentityUserId",
                 table: "Partners",
                 column: "IdentityUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RequestServices_PartnerId",
-                table: "RequestServices",
-                column: "PartnerId",
-                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -423,6 +400,9 @@ namespace CommunityPartners.Migrations
                 name: "DonateServices");
 
             migrationBuilder.DropTable(
+                name: "Partners");
+
+            migrationBuilder.DropTable(
                 name: "PayPals");
 
             migrationBuilder.DropTable(
@@ -436,9 +416,6 @@ namespace CommunityPartners.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
-
-            migrationBuilder.DropTable(
-                name: "Partners");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
