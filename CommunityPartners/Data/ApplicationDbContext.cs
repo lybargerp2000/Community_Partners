@@ -39,5 +39,14 @@ namespace CommunityPartners.Data
         public DbSet<Models.RequestService> RequestServices { get; set; }
         public DbSet<Models.DonateServicePartners> DonateServicePartnersers { get; set; }
         public DbSet<Models.RequestServicePartners> RequestServicePartnersers { get; set; }
+        //public DbSet<Models.GeoLocation> GeoLocationss { get; set; }
+        //public DbSet<Models.GeoGeometry> GeoGeometries { get; set; }
+        //public DbSet<Models.GeoLocation_Location> GeoLocations { get; set; }
+        //public DbSet<Models.GeoNortheast> GeoNortheasts { get; set; }
+        //public DbSet<Models.GeoSouthwest> GeoSouthwests { get; set; }
+        //public DbSet<Models.GeoPlus_Code> GeoPlus_Codes { get; set; }
+        //public DbSet<Models.GeoViewport> GeoViewports { get; set; }
+   
+        //public DbSet<Models.GeoResult> GeoResults { get; set; }
     }
 }

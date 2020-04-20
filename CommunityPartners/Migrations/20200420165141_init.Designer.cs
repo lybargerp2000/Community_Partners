@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CommunityPartners.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200417145240_init")]
+    [Migration("20200420165141_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -309,15 +309,15 @@ namespace CommunityPartners.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "3eebafc4-9809-4ad2-b46a-c9020801be87",
-                            ConcurrencyStamp = "3037e24b-6097-459a-8b49-a8d14cf05ff1",
+                            Id = "15e396fd-b6fc-406f-8432-3327cfa07cfb",
+                            ConcurrencyStamp = "5e8f1ecc-8ad9-4a70-9d8a-1a3046f2a01d",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "f0422804-58c2-4058-afb5-68c48093cc93",
-                            ConcurrencyStamp = "8c015776-1844-465a-8c8c-cf710f7ce432",
+                            Id = "dfbaaf94-8fbe-4525-b987-bd54773a2454",
+                            ConcurrencyStamp = "cfe737ec-265d-4c6d-9b6c-996d71e4bad8",
                             Name = "Partner",
                             NormalizedName = "PARTNER"
                         });
