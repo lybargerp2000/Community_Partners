@@ -28,10 +28,24 @@ namespace CommunityPartners.Controllers
             var applicationDbContext = _context.Partners.Include(p => p.IdentityUser);
             return View(await applicationDbContext.ToListAsync());
         }
-        public  IActionResult ViewLocation()
+        public async Task<IActionResult> ViewLocation(int? id)
         {
-            return NotFound();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var partner = await _context.Partners
+                .Include(p => p.IdentityUser)
+                .FirstOrDefaultAsync(m => m.PartnerId == id);
+            if (partner == null)
+            {
+                return NotFound();
+            }
+
+            return View(partner);
         }
+
 
         // GET: Partners/Details/5
         public async Task<IActionResult> Details(int? id)
