@@ -33,5 +33,16 @@ namespace CommunityPartners.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        //private readonly MapService _mapService;
+        
+        //public HomeController(MapService mapService)
+        //{
+        //    _mapService = mapService;
+        //}
+        //public async Task<IActionResult> Index([FromServices] MapService mapService)
+        //{
+        //    GeoLocation geoLocation = await _mapService.GetGeoLocation(mapService);
+        //    return View(geoLocation);
+        //}
     }
 }

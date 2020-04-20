@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using CommunityPartners.ActionFilters;
+using CommunityPartners.Contracts;
 
 namespace CommunityPartners
 {
@@ -44,6 +45,7 @@ namespace CommunityPartners
             });
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddScoped<IGeoCodeRequest, MapService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
