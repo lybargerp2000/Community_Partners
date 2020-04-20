@@ -8,16 +8,18 @@ using Microsoft.EntityFrameworkCore;
 using CommunityPartners.Data;
 using CommunityPartners.Models;
 using System.Security.Claims;
+using CommunityPartners.Contracts;
 
 namespace CommunityPartners.Controllers
 {
     public class PartnersController : Controller
     {
         private readonly ApplicationDbContext _context;
-
-        public PartnersController(ApplicationDbContext context)
+        private readonly IGeoCodeRequest _geoCodeRequest;
+        public PartnersController(ApplicationDbContext context, IGeoCodeRequest geoCodeRequest)
         {
             _context = context;
+            _geoCodeRequest = geoCodeRequest;
         }
 
         // GET: Partners
@@ -84,6 +86,10 @@ namespace CommunityPartners.Controllers
             {
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 partner.IdentityUserId = userId;
+                string address = (partner.PartnerAddress.ToString() + ", +" + partner.PartnerAddress.ToString() + ",+" + partner.PartnerState.ToString());
+                GeoLocation location = await _geoCodeRequest.GetGeoLocation(address);
+                partner.PartnerLat = location.results[0].geometry.location.lat.ToString();
+                partner.PartnerLong = location.results[0].geometry.location.lng.ToString();
                 _context.Add(partner);
                 await _context.SaveChangesAsync();
                 //_context.Add(partner);
