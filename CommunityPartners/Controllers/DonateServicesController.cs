@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CommunityPartners.Data;
 using CommunityPartners.Models;
+using System.Security.Claims;
 
 namespace CommunityPartners.Controllers
 {
@@ -62,6 +63,7 @@ namespace CommunityPartners.Controllers
         // GET: DonateServices/Create
         public IActionResult Create()
         {
+            ViewData["PartnerId"] = new SelectList(_context.Partners, "PartnerId");
             return View();
         }
 
@@ -70,16 +72,36 @@ namespace CommunityPartners.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DonateServiceId,PartnerId,Date,DonationRadiusMiles,Zipcode,Description")] DonateService donateService)
+        public ActionResult Create(DonateService donateService)
         {
             if (ModelState.IsValid)
             {
+
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                Partner currentpartner = _context.Partners.Where(v => v.IdentityUserId == userId).FirstOrDefault();
+
+                var partnerId = currentpartner.PartnerId;
+                //var testvariable = currentviewer.WWindow.ViewerLocation.ViewerLocationViewerId;
                 _context.Add(donateService);
-                await _context.SaveChangesAsync();
+                _context.Partners.Update(currentpartner);
+                _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(donateService);
+            ViewData["PartnerId"] = new SelectList(_context.Partners, "PartnerId");
+            //ViewData["WeekendLocationId"] = new SelectList(_context.ViewerLocation, "ViewerLocationId", "ViewerLocationId", wWindow.WeekendLocationId);
+            return RedirectToAction(nameof(Index));
         }
+        //public async Task<IActionResult> Create([Bind("DonateServiceId,PartnerId,Date,DonationRadiusMiles,Zipcode,Description")] DonateService donateService)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+
+        //        _context.Add(donateService);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(donateService);
+        //}
 
         // GET: DonateServices/Edit/5
         public async Task<IActionResult> Edit(int? id)

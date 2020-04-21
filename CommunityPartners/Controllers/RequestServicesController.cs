@@ -76,35 +76,35 @@ namespace CommunityPartners.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public ActionResult Create(RequestService requestService)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-
-        //        var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-        //        Partner currentpartner = _context.Partners.Where(v => v.IdentityUserId == userId).FirstOrDefault();
-
-        //        var partnerId = currentpartner.PartnerId;
-        //        //var testvariable = currentviewer.WWindow.ViewerLocation.ViewerLocationViewerId;
-        //        _context.Add(requestService);
-        //        _context.Partners.Update(currentpartner);
-        //        _context.SaveChangesAsync();
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    ViewData["PartnerId"] = new SelectList(_context.Partners, "PartnerId");
-        //    //ViewData["WeekendLocationId"] = new SelectList(_context.ViewerLocation, "ViewerLocationId", "ViewerLocationId", wWindow.WeekendLocationId);
-        //    return RedirectToAction(nameof(Index));
-        //}
-        public async Task<IActionResult> Create(RequestService requestService)
+        public ActionResult Create(RequestService requestService)
         {
             if (ModelState.IsValid)
             {
+
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                Partner currentpartner = _context.Partners.Where(v => v.IdentityUserId == userId).FirstOrDefault();
+
+                var partnerId = currentpartner.PartnerId;
+                //var testvariable = currentpartner.PartnerId;
                 _context.Add(requestService);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+                _context.Partners.Update(currentpartner);
+                _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
-            return View(requestService);
+            ViewData["PartnerId"] = new SelectList(_context.Partners, "PartnerId");
+            //ViewData["WeekendLocationId"] = new SelectList(_context.ViewerLocation, "ViewerLocationId", "ViewerLocationId", wWindow.WeekendLocationId);
+            return RedirectToAction(nameof(Index));
         }
+        //public async Task<IActionResult> Create(RequestService requestService)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(requestService);
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(requestService);
+        //}
 
         // GET: RequestServices/Edit/5
         public async Task<IActionResult> Edit(int? id)
