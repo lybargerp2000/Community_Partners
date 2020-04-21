@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>List of Services</h1>
+<h1>Index</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -52,7 +52,6 @@
                 <a asp-action="Edit" asp-route-id="@item.DonateServiceId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.DonateServiceId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.DonateServiceId">Delete</a>
-                <a asp-action="ViewService" asp-route-id="@item.DonateServiceId">View Service</a>
             </td>
         </tr>
 }
