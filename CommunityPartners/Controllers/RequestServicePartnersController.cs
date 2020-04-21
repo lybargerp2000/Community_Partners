@@ -10,38 +10,22 @@ using CommunityPartners.Models;
 
 namespace CommunityPartners.Controllers
 {
-    public class DonateServicesController : Controller
+    public class RequestServicePartnersController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public DonateServicesController(ApplicationDbContext context)
+        public RequestServicePartnersController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: DonateServices
+        // GET: RequestServicePartners
         public async Task<IActionResult> Index()
         {
-            return View(await _context.DonateServices.ToListAsync());
-        }
-        public async Task<IActionResult> ViewService(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var donateService = await _context.DonateServices
-                .FirstOrDefaultAsync(m => m.DonateServiceId == id);
-            if (donateService == null)
-            {
-                return NotFound();
-            }
-
-            return View(donateService);
+            return View(await _context.RequestServicePartnersers.ToListAsync());
         }
 
-        // GET: DonateServices/Details/5
+        // GET: RequestServicePartners/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -49,39 +33,39 @@ namespace CommunityPartners.Controllers
                 return NotFound();
             }
 
-            var donateService = await _context.DonateServices
-                .FirstOrDefaultAsync(m => m.DonateServiceId == id);
-            if (donateService == null)
+            var requestServicePartners = await _context.RequestServicePartnersers
+                .FirstOrDefaultAsync(m => m.RequestServicePartnersId == id);
+            if (requestServicePartners == null)
             {
                 return NotFound();
             }
 
-            return View(donateService);
+            return View(requestServicePartners);
         }
 
-        // GET: DonateServices/Create
+        // GET: RequestServicePartners/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: DonateServices/Create
+        // POST: RequestServicePartners/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DonateServiceId,PartnerId,Date,DonationRadiusMiles,Zipcode,Description")] DonateService donateService)
+        public async Task<IActionResult> Create([Bind("RequestServicePartnersId,PartnerId,ProposalDate,Accepted,RatingHelpfulnessId,PayPalId")] RequestServicePartners requestServicePartners)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(donateService);
+                _context.Add(requestServicePartners);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(donateService);
+            return View(requestServicePartners);
         }
 
-        // GET: DonateServices/Edit/5
+        // GET: RequestServicePartners/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -89,22 +73,22 @@ namespace CommunityPartners.Controllers
                 return NotFound();
             }
 
-            var donateService = await _context.DonateServices.FindAsync(id);
-            if (donateService == null)
+            var requestServicePartners = await _context.RequestServicePartnersers.FindAsync(id);
+            if (requestServicePartners == null)
             {
                 return NotFound();
             }
-            return View(donateService);
+            return View(requestServicePartners);
         }
 
-        // POST: DonateServices/Edit/5
+        // POST: RequestServicePartners/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DonateServiceId,PartnerId,Date,DonationRadiusMiles,Zipcode,Description")] DonateService donateService)
+        public async Task<IActionResult> Edit(int id, [Bind("RequestServicePartnersId,PartnerId,ProposalDate,Accepted,RatingHelpfulnessId,PayPalId")] RequestServicePartners requestServicePartners)
         {
-            if (id != donateService.DonateServiceId)
+            if (id != requestServicePartners.RequestServicePartnersId)
             {
                 return NotFound();
             }
@@ -113,12 +97,12 @@ namespace CommunityPartners.Controllers
             {
                 try
                 {
-                    _context.Update(donateService);
+                    _context.Update(requestServicePartners);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DonateServiceExists(donateService.DonateServiceId))
+                    if (!RequestServicePartnersExists(requestServicePartners.RequestServicePartnersId))
                     {
                         return NotFound();
                     }
@@ -129,10 +113,10 @@ namespace CommunityPartners.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(donateService);
+            return View(requestServicePartners);
         }
 
-        // GET: DonateServices/Delete/5
+        // GET: RequestServicePartners/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -140,30 +124,30 @@ namespace CommunityPartners.Controllers
                 return NotFound();
             }
 
-            var donateService = await _context.DonateServices
-                .FirstOrDefaultAsync(m => m.DonateServiceId == id);
-            if (donateService == null)
+            var requestServicePartners = await _context.RequestServicePartnersers
+                .FirstOrDefaultAsync(m => m.RequestServicePartnersId == id);
+            if (requestServicePartners == null)
             {
                 return NotFound();
             }
 
-            return View(donateService);
+            return View(requestServicePartners);
         }
 
-        // POST: DonateServices/Delete/5
+        // POST: RequestServicePartners/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var donateService = await _context.DonateServices.FindAsync(id);
-            _context.DonateServices.Remove(donateService);
+            var requestServicePartners = await _context.RequestServicePartnersers.FindAsync(id);
+            _context.RequestServicePartnersers.Remove(requestServicePartners);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool DonateServiceExists(int id)
+        private bool RequestServicePartnersExists(int id)
         {
-            return _context.DonateServices.Any(e => e.DonateServiceId == id);
+            return _context.RequestServicePartnersers.Any(e => e.RequestServicePartnersId == id);
         }
     }
 }
