@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/ViewRequestService.cshtml";
 }
 
 <h1>Edit</h1>
@@ -15,7 +16,7 @@
             <input type="hidden" asp-for="RequestServiceId" />
             <div class="form-group">
                 <label asp-for="PartnerId" class="control-label"></label>
-                <select asp-for="PartnerId" class="form-control" asp-items="ViewBag.PartnerId"></select>
+                <input asp-for="PartnerId" class="form-control" />
                 <span asp-validation-for="PartnerId" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -69,6 +70,3 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

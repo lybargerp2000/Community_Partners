@@ -2,9 +2,10 @@
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/ViewRequestService.cshtml";
 }
 
-<h1>Requests for Services</h1>
+<h1>Index</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -76,8 +77,6 @@
                 <a asp-action="Edit" asp-route-id="@item.RequestServiceId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.RequestServiceId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.RequestServiceId">Delete</a>
-                <a asp-action="AcceptRequest" asp-route-id="@item.RequestServiceId">AcceptRequest</a>
-                <a asp-action="MapViewRequest" asp-route-id="@item.RequestServiceId">View Location</a>
             </td>
         </tr>
 }

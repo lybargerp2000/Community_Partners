@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CommunityPartners.Data;
 using CommunityPartners.Models;
-using System.Security.Claims;
 
 namespace CommunityPartners.Controllers
 {
@@ -18,32 +17,12 @@ namespace CommunityPartners.Controllers
         public RequestServicesController(ApplicationDbContext context)
         {
             _context = context;
-            
         }
-        public IActionResult AcceptRequest()
-        {
-            return View();
-        }
+
         // GET: RequestServices
         public async Task<IActionResult> Index()
         {
             return View(await _context.RequestServices.ToListAsync());
-        }
-        public async Task<IActionResult> MapViewRequest(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var requestService = await _context.RequestServices
-                .FirstOrDefaultAsync(m => m.RequestServiceId == id);
-            if (requestService == null)
-            {
-                return NotFound();
-            }
-
-            return View(requestService);
         }
 
         // GET: RequestServices/Details/5
@@ -67,7 +46,6 @@ namespace CommunityPartners.Controllers
         // GET: RequestServices/Create
         public IActionResult Create()
         {
-            ViewData["PartnerId"] = new SelectList(_context.Partners, "PartnerId");
             return View();
         }
 
@@ -76,35 +54,16 @@ namespace CommunityPartners.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(RequestService requestService)
+        public async Task<IActionResult> Create([Bind("RequestServiceId,PartnerId,PayPalId,RequestDate,RequestItem,GroceryList,AcceptRequest,RequestDayOfWeek,TransactionAmount,RatingEntry")] RequestService requestService)
         {
             if (ModelState.IsValid)
             {
-
-                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                Partner currentpartner = _context.Partners.Where(v => v.IdentityUserId == userId).FirstOrDefault();
-
-                var partnerId = currentpartner.PartnerId;
-                //var testvariable = currentpartner.PartnerId;
                 _context.Add(requestService);
-                _context.Partners.Update(currentpartner);
-                _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PartnerId"] = new SelectList(_context.Partners, "PartnerId");
-            //ViewData["WeekendLocationId"] = new SelectList(_context.ViewerLocation, "ViewerLocationId", "ViewerLocationId", wWindow.WeekendLocationId);
-            return RedirectToAction(nameof(Index));
+            return View(requestService);
         }
-        //public async Task<IActionResult> Create(RequestService requestService)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _context.Add(requestService);
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(requestService);
-        //}
 
         // GET: RequestServices/Edit/5
         public async Task<IActionResult> Edit(int? id)

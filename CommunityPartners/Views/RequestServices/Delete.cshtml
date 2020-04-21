@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/ViewRequestService.cshtml";
 }
 
 <h1>Delete</h1>
@@ -11,6 +12,12 @@
     <h4>RequestService</h4>
     <hr />
     <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PartnerId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PartnerId)
+        </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.PayPalId)
         </dt>
