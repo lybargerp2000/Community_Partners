@@ -46,7 +46,7 @@ namespace CommunityPartners.Data
         //public DbSet<Models.GeoSouthwest> GeoSouthwests { get; set; }
         //public DbSet<Models.GeoPlus_Code> GeoPlus_Codes { get; set; }
         //public DbSet<Models.GeoViewport> GeoViewports { get; set; }
-   
+
         //public DbSet<Models.GeoResult> GeoResults { get; set; }
     }
 }

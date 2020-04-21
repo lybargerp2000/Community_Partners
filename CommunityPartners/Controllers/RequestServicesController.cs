@@ -18,6 +18,7 @@ namespace CommunityPartners.Controllers
         public RequestServicesController(ApplicationDbContext context)
         {
             _context = context;
+            
         }
         public IActionResult AcceptRequest()
         {
@@ -27,6 +28,22 @@ namespace CommunityPartners.Controllers
         public async Task<IActionResult> Index()
         {
             return View(await _context.RequestServices.ToListAsync());
+        }
+        public async Task<IActionResult> MapViewRequest(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var requestService = await _context.RequestServices
+                .FirstOrDefaultAsync(m => m.RequestServiceId == id);
+            if (requestService == null)
+            {
+                return NotFound();
+            }
+
+            return View(requestService);
         }
 
         // GET: RequestServices/Details/5

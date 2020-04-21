@@ -7,7 +7,7 @@ namespace CommunityPartners.Models
 {
     public class GeoLocation
     {
-       
+       //public int GeoLocationId { get; set; }
         public GeoResult[] results { get; set; }
         public string status { get; set; }
     }

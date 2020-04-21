@@ -4,9 +4,6 @@
     ViewData["Title"] = "ViewLocation";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
-
 <style>
     /* Set the size of the div element that contains the map */
     #map {
@@ -48,5 +45,4 @@ coords: { lat: @result.geometry.location.lat, lng: @result.geometry.location.lng
 
 <script src="https://maps.googleapis.com/maps/api/js?key=@APIKEYS.GoogleAPIKey&callback=initMap"
         async defer></script>
-
 
