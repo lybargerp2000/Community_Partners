@@ -11,6 +11,8 @@ namespace CommunityPartners.Models
         public int RequestServicePartnersId { get; set; }
         [ForeignKey("PartnerInfo")]
         public int PartnerId { get; set; }
+        [ForeignKey("RequestServiceId")]
+        public int RequestServiceId { get; set; }
         public DateTime ProposalDate { get; set; }
         public bool Accepted { get; set; }
         [ForeignKey("RatingInfo")]

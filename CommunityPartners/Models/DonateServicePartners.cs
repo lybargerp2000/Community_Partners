@@ -11,6 +11,8 @@ namespace CommunityPartners.Models
         public int DonateServicePartnersId { get; set; }
         [ForeignKey("PartnerId")] 
         public int PartnerId { get; set; }
+        [ForeignKey("DonateServiceId")]
+        public int DonateServiceId { get; set; }
         public DateTime RequestDate { get; set; }
         public bool Accepted { get; set; }
         [ForeignKey("PayPal")]
