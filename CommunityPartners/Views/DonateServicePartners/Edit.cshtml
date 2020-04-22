@@ -20,6 +20,11 @@
                 <span asp-validation-for="PartnerId" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="DonateServiceId" class="control-label"></label>
+                <input asp-for="DonateServiceId" class="form-control" />
+                <span asp-validation-for="DonateServiceId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="RequestDate" class="control-label"></label>
                 <input asp-for="RequestDate" class="form-control" />
                 <span asp-validation-for="RequestDate" class="text-danger"></span>
@@ -50,3 +55,6 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

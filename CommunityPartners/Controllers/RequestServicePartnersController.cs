@@ -54,7 +54,7 @@ namespace CommunityPartners.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RequestServicePartnersId,PartnerId,ProposalDate,Accepted,RatingHelpfulnessId,PayPalId")] RequestServicePartners requestServicePartners)
+        public async Task<IActionResult> Create([Bind("RequestServicePartnersId,PartnerId,RequestServiceId,ProposalDate,Accepted,RatingHelpfulnessId,PayPalId")] RequestServicePartners requestServicePartners)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace CommunityPartners.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("RequestServicePartnersId,PartnerId,ProposalDate,Accepted,RatingHelpfulnessId,PayPalId")] RequestServicePartners requestServicePartners)
+        public async Task<IActionResult> Edit(int id, [Bind("RequestServicePartnersId,PartnerId,RequestServiceId,ProposalDate,Accepted,RatingHelpfulnessId,PayPalId")] RequestServicePartners requestServicePartners)
         {
             if (id != requestServicePartners.RequestServicePartnersId)
             {
