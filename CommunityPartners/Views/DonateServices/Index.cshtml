@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/ViewDonateService.cshtml";
 }
 
-<h1>Donate List</h1>
+<h1>Service List</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -53,6 +53,7 @@
                 <a asp-action="Edit" asp-route-id="@item.DonateServiceId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.DonateServiceId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.DonateServiceId">Delete</a>
+                <a asp-action="AcceptService" asp-route-id="@item.DonateServiceId">Accept Service</a>
             </td>
         </tr>
 }

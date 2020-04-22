@@ -18,6 +18,23 @@ namespace CommunityPartners.Controllers
         {
             _context = context;
         }
+        public async Task<IActionResult> AcceptService(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var donateService = await _context.DonateServices
+                .FirstOrDefaultAsync(m => m.DonateServiceId == id);
+            if (donateService == null)
+            {
+                return NotFound();
+            }
+
+            return View(donateService);
+        }
+
 
         // GET: DonateServices
         public async Task<IActionResult> Index()
