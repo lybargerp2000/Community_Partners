@@ -45,8 +45,12 @@ namespace CommunityPartners.Controllers
         }
 
         // GET: DonateServicePartners/Create
-        public IActionResult Create()
+        public IActionResult Create(Partner partner, DonateServicePartners donateServicePartners)
         {
+
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["PartnerId"] = new SelectList(_context.DonateServices, "PartnerId", "DonateserviceId");
+            //donateServicePartners.PartnerId = partner.PartnerId;
             return View();
         }
 
@@ -61,13 +65,26 @@ namespace CommunityPartners.Controllers
             {
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 partner.IdentityUserId = userId;
-                int partnerId = partner.PartnerId;
-                donateServicePartners.DonateServicePartnersId = partnerId;
+                Partner currentpartner = _context.Partners.Where(v => v.IdentityUserId == userId).FirstOrDefault();
+                currentpartner.PartnerId = donateServicePartners.PartnerId;
+                var viewerId = currentpartner.PartnerId;
+                var testvariable = currentpartner.PartnerId;
+                //var id = partner.PartnerId;
+                //donateServicePartners.PartnerId = id;
+                //var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                //partner.IdentityUserId = userId;
 
+                //donateServicePartners.PartnerId = partner.PartnerId;
+                //var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                //donateServicePartners.IdentityUserId = userId;
+                //partner.PartnerId = donateServicePartners.PartnerId;
+                //donateServicePartners.PartnerId = partnerId;
+                
                 _context.Add(donateServicePartners);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", partner.IdentityUserId);
             return View(donateServicePartners);
         }
 
