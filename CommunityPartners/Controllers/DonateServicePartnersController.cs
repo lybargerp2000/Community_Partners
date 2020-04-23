@@ -25,6 +25,22 @@ namespace CommunityPartners.Controllers
         {
             return View(await _context.DonateServicePartnersers.ToListAsync());
         }
+        public async Task<IActionResult> ViewPartnerLocation(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var donateServicePartners = await _context.DonateServicePartnersers
+                .FirstOrDefaultAsync(m => m.DonateServicePartnersId == id);
+            if (donateServicePartners == null)
+            {
+                return NotFound();
+            }
+
+            return View(donateServicePartners);
+        }
 
         // GET: DonateServicePartners/Details/5
         public async Task<IActionResult> Details(int? id)

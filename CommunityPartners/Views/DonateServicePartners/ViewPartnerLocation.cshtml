@@ -1,0 +1,55 @@
+﻿@model CommunityPartners.Models.DonateServicePartners
+
+@{
+    ViewData["Title"] = "ViewPartnerLocation";
+    Layout = "~/Views/Shared/ViewLocationDonatePartners.cshtml";
+}
+
+<h1>ViewPartnerLocation</h1>
+
+<div>
+    <h4>DonateServicePartners</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PartnerId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PartnerId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DonateServiceId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DonateServiceId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RequestDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RequestDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Accepted)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Accepted)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PayPalId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PayPalId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RatingHelpfulnessId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RatingHelpfulnessId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.DonateServicePartnersId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

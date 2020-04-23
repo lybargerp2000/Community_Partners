@@ -34,6 +34,15 @@ namespace CommunityPartners.Controllers
 
             return View(donateService);
         }
+        public IActionResult ViewWhoAccepted()
+        {
+            return View();
+
+        }
+        //public Task AcceptSericeToFinal()
+        //{
+
+        //}
 
 
         // GET: DonateServices
