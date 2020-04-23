@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CommunityPartners.Data;
 using CommunityPartners.Models;
+using CommunityPartners.Contracts;
 
 namespace CommunityPartners.Controllers
 {
     public class DonateServicesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IGeoCodeRequest _geoCodeRequest;
 
-        public DonateServicesController(ApplicationDbContext context)
+        public DonateServicesController(ApplicationDbContext context, IGeoCodeRequest geoCodeRequest)
         {
             _context = context;
+            _geoCodeRequest = geoCodeRequest;
         }
         public async Task<IActionResult> AcceptService(int? id)
         {
@@ -43,6 +46,23 @@ namespace CommunityPartners.Controllers
         //{
 
         //}
+        //public async Task<IActionResult> SearchPartners(Partner partner)
+        //{
+        //    ViewData["PartnerRadiusId"] = new SelectList(_context.partnerRadii, "PartnerRadiusId", "RadiusMiles");
+        //    string address = (partner.PartnerAddress.ToString() + ", +" + partner.PartnerAddress.ToString() + ",+" + partner.PartnerState.ToString());
+        //    GeoLocation location = await _geoCodeRequest.GetGeoLocation(address);
+        //    partner.PartnerLat = location.results[0].geometry.location.lat.ToString();
+        //    partner.PartnerLong = location.results[0].geometry.location.lng.ToString();
+        //    return View(partner);
+
+        //}
+        public async Task<IActionResult> SearchPartners()
+        {
+            
+
+            return View();
+        }
+
 
 
         // GET: DonateServices

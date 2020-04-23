@@ -21,6 +21,12 @@ namespace CommunityPartners.Controllers
             _context = context;
             _geoCodeRequest = geoCodeRequest;
         }
+        public async Task<IActionResult> SearchForPartners()
+        {
+
+            Partner partner = new Partner();
+            return View(partner);
+        }
 
         // GET: Partners
         public async Task<IActionResult> Index()
