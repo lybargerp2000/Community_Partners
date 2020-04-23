@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CommunityPartners.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -30,7 +31,15 @@ namespace CommunityPartners.Data
                  NormalizedName = "PARTNER",
              }
             );
+            builder.Entity<PartnerRadius>()
+                .HasData(
+                    new PartnerRadius { PartnerRadiusId = 1, RadiusMiles = 1, RadiusMeters = 1600 },
+                    new PartnerRadius { PartnerRadiusId = 2, RadiusMiles = 5, RadiusMeters = 8000 },
+                    new PartnerRadius { PartnerRadiusId = 3, RadiusMiles = 10, RadiusMeters = 16000 },
+                    new PartnerRadius { PartnerRadiusId = 4, RadiusMiles = 30, RadiusMeters = 50000 }
+                );
         }
+        public DbSet<Models.PartnerRadius> partnerRadii { get; set; }
         public DbSet<Models.Partner> Partners { get; set; }
         public DbSet<Models.Admin> Admins { get; set; }
         public DbSet<Models.DonateService> DonateServices { get; set; }

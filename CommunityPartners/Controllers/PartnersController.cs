@@ -47,6 +47,14 @@ namespace CommunityPartners.Controllers
 
             return View(partner);
         }
+        //public async Task<IActionResult> SearchPartners(Partner partner)
+        //{
+        //    string address = (partner.PartnerAddress.ToString() + ", +" + partner.PartnerAddress.ToString() + ",+" + partner.PartnerState.ToString());
+        //    GeoLocation location = await _geoCodeRequest.GetGeoLocation(address);
+        //    partner.PartnerLat = location.results[0].geometry.location.lat.ToString();
+        //    partner.PartnerLong = location.results[0].geometry.location.lng.ToString();
+
+        //}
 
 
         // GET: Partners/Details/5
