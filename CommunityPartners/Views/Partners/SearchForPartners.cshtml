@@ -19,7 +19,7 @@
 <script>
 // Initialize and add the map
     function initMap() {
-        var address = { lat: @Model.PartnerLat, lng: @Model.PartnerLong};
+        var address = { lat: partners.PartnerLat, lng: partners.PartnerLong};
         var map = new google.maps.Map(
             document.getElementById('map'), { zoom: 10, center: address });
         var marker = new google.maps.Marker({
@@ -28,24 +28,26 @@
             title: 'Go Here Bro!!'
         });
  }
-@*@foreach(GeoResult result in Model.)
+
+    @*@foreach(var partner in Model)
 {
 <text> addMarker({
-coords: { lat: @result.geometry.location.lat, lng: @result.geometry.location.lng },*@
-
-@*+'<h5>@result.vicinity</h5>'*@
-        //});</text>
-
-        //function addMarker(props) {
-        //var marker = new google.maps.Marker({ position: props.coords, map: map });
-        //if (props.content) {
-        //var infoWindow = new google.maps.InfoWindow({
-        //content: props.content
-        //});
-        //marker.addListener('click', function () {
-        //infoWindow.open(map, marker)
-        //});
-
+coords: { lat:  , lng: modelItem => item.PartnerLong },
+content: '<h2>Hello World!</h2>'
+});</text>
+}
+function addMarker(props) {
+var marker = new google.maps.Marker({ position: props.coords, map: map });
+if (props.content) {
+var infoWindow = new google.maps.InfoWindow({
+content: props.content
+});
+marker.addListener('click', function () {
+infoWindow.open(map, marker)
+});
+}
+}
+}*@
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=@APIKEYS.GoogleAPIKey&callback=initMap"
