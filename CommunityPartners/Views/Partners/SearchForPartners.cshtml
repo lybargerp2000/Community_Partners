@@ -21,7 +21,7 @@
     function initMap() {
         var address = { lat: @Model.PartnerLat, lng: @Model.PartnerLong};
         var map = new google.maps.Map(
-            document.getElementById('map'), { zoom: 15, center: address });
+            document.getElementById('map'), { zoom: 10, center: address });
         var marker = new google.maps.Marker({
             position: address,
             map: map,

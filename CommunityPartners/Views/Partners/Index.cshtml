@@ -13,35 +13,23 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.IdentityUser)
-            </th>
+           
             <th>
                 @Html.DisplayNameFor(model => model.FirstName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.LastName)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HomeLocationId)
-            </th>
+            
             <th>
                 @Html.DisplayNameFor(model => model.PartnerPhone)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ReOccurringDayRequest)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RequestReceiveOrDonate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AmountDonated)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Itemdonated)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MilesTravelled)
+           
+            
+           
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PartnerAddress)
@@ -55,54 +43,31 @@
             <th>
                 @Html.DisplayNameFor(model => model.PartnerZip)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PartnerLong)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PartnerLat)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PayPalId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TransactionHistory)
-            </th>
+           
+            
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdentityUser.Id)
-            </td>
+            
             <td>
                 @Html.DisplayFor(modelItem => item.FirstName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.LastName)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HomeLocationId)
-            </td>
+           
             <td>
                 @Html.DisplayFor(modelItem => item.PartnerPhone)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ReOccurringDayRequest)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RequestReceiveOrDonate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AmountDonated)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Itemdonated)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MilesTravelled)
-            </td>
+            
+            
+            
             <td>
                 @Html.DisplayFor(modelItem => item.PartnerAddress)
             </td>
@@ -115,18 +80,8 @@
             <td>
                 @Html.DisplayFor(modelItem => item.PartnerZip)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PartnerLong)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PartnerLat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PayPalId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TransactionHistory)
-            </td>
+           
+           
             <td>
                 <a asp-action="Edit" asp-route-id="@item.PartnerId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.PartnerId">Details</a> |
