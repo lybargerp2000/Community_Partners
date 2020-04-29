@@ -21,12 +21,17 @@ namespace CommunityPartners.Controllers
             _context = context;
             _geoCodeRequest = geoCodeRequest;
         }
+        public async Task<IActionResult> SelectState()
+        {
+            return View();
+        }
        public async Task<IActionResult> SearchForPartners()
         {
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var viewerInDb = _context.Partners.Where(m => m.IdentityUserId == userId).FirstOrDefault();
             var applicationDbContext = _context.Partners.Include(p => p.IdentityUser);
+            
             return View(await applicationDbContext.ToListAsync());
            
             //var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
