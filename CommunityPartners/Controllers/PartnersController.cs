@@ -21,17 +21,22 @@ namespace CommunityPartners.Controllers
             _context = context;
             _geoCodeRequest = geoCodeRequest;
         }
-       public async Task<IActionResult> SearchForPartners(Partner partner)
+       public async Task<IActionResult> SearchForPartners()
         {
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            partner.IdentityUserId = userId;
-            //var partner = await _context.Partners
-                 var partners = await _context.Partners.Include(p => p.IdentityUser)
-                 .FirstOrDefaultAsync(m => m.IdentityUserId == userId);
+            var viewerInDb = _context.Partners.Where(m => m.IdentityUserId == userId).FirstOrDefault();
+            var applicationDbContext = _context.Partners.Include(p => p.IdentityUser);
+            return View(await applicationDbContext.ToListAsync());
+           
+            //var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //partner.IdentityUserId = userId;
+            ////var partner = await _context.Partners
+            //var partner1 = await _context.Partners.Include(p => p.IdentityUser)
+            //.FirstOrDefaultAsync(m => m.IdentityUserId == userId);
 
-            return View(partners);
-            
+            ////return View(partner1);
+            //return View(partner);
 
         }
        

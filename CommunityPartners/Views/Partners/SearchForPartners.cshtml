@@ -1,4 +1,4 @@
-﻿@model CommunityPartners.Models.Partner
+﻿@model IEnumerable<CommunityPartners.Models.Partner>
 
 @{
     ViewData["Title"] = "SearchForPartners";
@@ -19,21 +19,14 @@
 <script>
 // Initialize and add the map
     function initMap() {
-        var address = { lat: partners.PartnerLat, lng: partners.PartnerLong};
+        var address = { lat: ""  , lng: ""};
         var map = new google.maps.Map(
             document.getElementById('map'), { zoom: 10, center: address });
-        var marker = new google.maps.Marker({
-            position: address,
-            map: map,
-            title: 'Go Here Bro!!'
-        });
- }
-
-    @*@foreach(var partner in Model)
+      @foreach(Partner result in Model)
 {
 <text> addMarker({
-coords: { lat:  , lng: modelItem => item.PartnerLong },
-content: '<h2>Hello World!</h2>'
+coords: { lat: @result.PartnerLat, lng: @result.PartnerLong },
+
 });</text>
 }
 function addMarker(props) {
@@ -47,7 +40,7 @@ infoWindow.open(map, marker)
 });
 }
 }
-}*@
+}
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=@APIKEYS.GoogleAPIKey&callback=initMap"
