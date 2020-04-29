@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewData["Title"] = "SelcetState";
+    Layout = "~/Views/Shared/ViewLocationDonatePartners.cshtml";
+}
+
+<style>
+    /* Set the size of the div element that contains the map */
+    #map {
+        height: 400px; /* The height is 400 pixels */
+        width: 100%; /* The width is the width of the web page */
+    }
+</style>
+<!--The div element for the map -->
+<div id="map"></div>
+
+
+<script>
+// Initialize and add the map
+    function initMap() {
+        var address = { lat: 40.432987, lng: -104.746994};
+        var map = new google.maps.Map(
+            document.getElementById('map'), { zoom: 15, center: address });
+        var marker = new google.maps.Marker({
+            position: address,
+            map: map,
+            title: 'Go Here Bro!!'
+        });
+ }
+@*@foreach(GeoResult result in Model.)
+{
+<text> addMarker({
+coords: { lat: @result.geometry.location.lat, lng: @result.geometry.location.lng },*@
+
+@*+'<h5>@result.vicinity</h5>'*@
+        //});</text>
+
+        //function addMarker(props) {
+        //var marker = new google.maps.Marker({ position: props.coords, map: map });
+        //if (props.content) {
+        //var infoWindow = new google.maps.InfoWindow({
+        //content: props.content
+        //});
+        //marker.addListener('click', function () {
+        //infoWindow.open(map, marker)
+        //});
+
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=@APIKEYS.GoogleAPIKey&callback=initMap"
+        async defer></script>
+
+
+
+
+
+

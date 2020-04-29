@@ -9,6 +9,7 @@ using CommunityPartners.Data;
 using CommunityPartners.Models;
 using System.Security.Claims;
 using CommunityPartners.Contracts;
+using CommunityPartners.MapViewModels;
 
 namespace CommunityPartners.Controllers
 {
@@ -23,7 +24,9 @@ namespace CommunityPartners.Controllers
         }
         public async Task<IActionResult> SelectState()
         {
-            return View();
+            MapView mapView = new MapView();
+        
+            return View(mapView);
         }
        public async Task<IActionResult> SearchForPartners()
         {
