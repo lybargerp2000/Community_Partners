@@ -34,6 +34,9 @@ namespace CommunityPartners.Models
         [ForeignKey("PayPal")]
         public int PayPalId { get; set; }
         public double TransactionHistory { get; set; }
+        [ForeignKey("RadiusId")]
+        public int PartnerRadiusId { get; set; }
+   
         //public RequestService RequestService { get; set; }
         //public DonateService DonateService { get; set; }
        

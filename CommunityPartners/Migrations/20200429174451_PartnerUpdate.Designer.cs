@@ -4,14 +4,16 @@ using CommunityPartners.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CommunityPartners.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200429174451_PartnerUpdate")]
+    partial class PartnerUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -367,15 +369,15 @@ namespace CommunityPartners.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "80eaba85-3a10-4403-a4e6-ec8c9de84c63",
-                            ConcurrencyStamp = "db0b674f-4a8a-4b6f-9100-e95139d4dcee",
+                            Id = "6ed58b88-1c6a-4fba-a08b-baa1e5b73fe0",
+                            ConcurrencyStamp = "0e0dcf3c-bcca-495f-ba1a-8eb8cde25edf",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "5dc2dafa-7fce-4db5-b671-f12c0f1e6044",
-                            ConcurrencyStamp = "311b09d2-ae9b-4675-9a20-e1ad1878d683",
+                            Id = "a7146945-83d0-4d73-b286-a5a01d0777aa",
+                            ConcurrencyStamp = "9e75d7a1-f322-44d8-a762-8ab8fa02619c",
                             Name = "Partner",
                             NormalizedName = "PARTNER"
                         });
