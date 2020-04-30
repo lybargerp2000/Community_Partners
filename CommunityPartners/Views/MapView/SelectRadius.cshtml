@@ -1,4 +1,4 @@
-﻿
+﻿@model CommunityPartners.Models.Partner
 @{
     ViewData["Title"] = "SelectState";
     Layout = "~/Views/Shared/ViewLocationDonatePartners.cshtml";
@@ -13,37 +13,23 @@
 </style>
 <!--The div element for the map -->
 <div id="map"></div>
+<br />
+<br />
+<a asp-action="SelectRadius" asp-area="" asp-controller="MapView">Select Radius</a>
 
 
 <script>
 // Initialize and add the map
     function initMap() {
-        var address = { lat: 40.432987, lng: -104.746994};
+        var address = { lat:@Model.PartnerLat , lng: @Model.PartnerLong};
         var map = new google.maps.Map(
             document.getElementById('map'), { zoom: 15, center: address });
         var marker = new google.maps.Marker({
             position: address,
             map: map,
-            title: 'Go Here Bro!!'
+            title: 'Your Location!!'
         });
- }
-@*@foreach(GeoResult result in Model.)
-{
-<text> addMarker({
-coords: { lat: @result.geometry.location.lat, lng: @result.geometry.location.lng },*@
-
-@*+'<h5>@result.vicinity</h5>'*@
-        //});</text>
-
-        //function addMarker(props) {
-        //var marker = new google.maps.Marker({ position: props.coords, map: map });
-        //if (props.content) {
-        //var infoWindow = new google.maps.InfoWindow({
-        //content: props.content
-        //});
-        //marker.addListener('click', function () {
-        //infoWindow.open(map, marker)
-        //});
+    }
 
 </script>
 
