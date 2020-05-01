@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using CommunityPartners.Data;
 using CommunityPartners.Models;
 using CommunityPartners.Contracts;
+using System.Security.Claims;
 
 namespace CommunityPartners.Controllers
 {
@@ -92,6 +93,7 @@ namespace CommunityPartners.Controllers
         // GET: DonateServices/Create
         public IActionResult Create()
         {
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
             return View();
         }
 
@@ -100,10 +102,13 @@ namespace CommunityPartners.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DonateServiceId,PartnerId,Date,DonationRadiusMiles,Zipcode,Description")] DonateService donateService)
+        public async Task<IActionResult> Create(DonateService donateService, Partner partner)
         {
             if (ModelState.IsValid)
             {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                partner.IdentityUserId = userId;
+                partner.PartnerId = donateService.PartnerId;
                 _context.Add(donateService);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
