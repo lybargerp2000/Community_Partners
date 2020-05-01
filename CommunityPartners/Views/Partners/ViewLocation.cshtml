@@ -22,10 +22,15 @@
         var address = { lat: @Model.PartnerLat, lng: @Model.PartnerLong};
         var map = new google.maps.Map(
             document.getElementById('map'), { zoom: 15, center: address });
+        
         var marker = new google.maps.Marker({
             position: address,
             map: map,
-            title: 'Go Here Bro!!'
+            
+            
+            title:'@Model.FirstName   @Model.LastName'
+            
+        
         });
  }
 @*@foreach(GeoResult result in Model.)
@@ -45,7 +50,7 @@ coords: { lat: @result.geometry.location.lat, lng: @result.geometry.location.lng
         //marker.addListener('click', function () {
         //infoWindow.open(map, marker)
         //});
-        
+
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=@APIKEYS.GoogleAPIKey&callback=initMap"

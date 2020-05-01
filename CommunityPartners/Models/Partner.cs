@@ -36,9 +36,11 @@ namespace CommunityPartners.Models
         public double TransactionHistory { get; set; }
         [ForeignKey("RadiusId")]
         public int PartnerRadiusId { get; set; }
-   
+        [ForeignKey("RatingId")]
+        public int RatingHelpfulnessId { get; set; }
+
         //public RequestService RequestService { get; set; }
         //public DonateService DonateService { get; set; }
-       
+
     }
 }
