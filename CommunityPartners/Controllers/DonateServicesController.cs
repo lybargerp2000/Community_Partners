@@ -107,8 +107,9 @@ namespace CommunityPartners.Controllers
             if (ModelState.IsValid)
             {
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                partner.IdentityUserId = userId;
-                partner.PartnerId = donateService.PartnerId;
+                var viewerInDb = _context.Partners.Where(m => m.IdentityUserId == userId).FirstOrDefault();
+                var applicationDbContext = _context.Partners.Include(p => p.IdentityUser);
+                donateService.PartnerId = viewerInDb.PartnerId;
                 _context.Add(donateService);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
