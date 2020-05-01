@@ -75,32 +75,20 @@ namespace CommunityPartners.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DonateServicePartnersId,PartnerId,DonateServiceId,RequestDate,Accepted,PayPalId,RatingHelpfulnessId")] DonateServicePartners donateServicePartners, Partner partner)
+        public async Task<IActionResult> Create(DonateServicePartners donateServicePartners, Partner partner)
         {
             if (ModelState.IsValid)
             {
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                partner.IdentityUserId = userId;
-                Partner currentpartner = _context.Partners.Where(v => v.IdentityUserId == userId).FirstOrDefault();
-                currentpartner.PartnerId = donateServicePartners.PartnerId;
-                var viewerId = currentpartner.PartnerId;
-                var testvariable = currentpartner.PartnerId;
-                //var id = partner.PartnerId;
-                //donateServicePartners.PartnerId = id;
-                //var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                //partner.IdentityUserId = userId;
-
-                //donateServicePartners.PartnerId = partner.PartnerId;
-                //var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                //donateServicePartners.IdentityUserId = userId;
-                //partner.PartnerId = donateServicePartners.PartnerId;
-                //donateServicePartners.PartnerId = partnerId;
-                
+                var viewerInDb = _context.Partners.Where(m => m.IdentityUserId == userId).FirstOrDefault();
+                var applicationDbContext = _context.Partners.Include(p => p.IdentityUser);
+                donateServicePartners.PartnerId = viewerInDb.PartnerId;
+                //Set up logic for setting current DonateServiceId
                 _context.Add(donateServicePartners);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", partner.IdentityUserId);
+           
             return View(donateServicePartners);
         }
 
