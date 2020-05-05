@@ -10,7 +10,6 @@
         height: 400px; /* The height is 400 pixels */
         width: 100%; /* The width is the width of the web page */
     }
-    
 </style>
 <!--The div element for the map -->
 <div id="map"></div>
@@ -22,15 +21,15 @@
         var address = { lat: @Model.PartnerLat, lng: @Model.PartnerLong};
         var map = new google.maps.Map(
             document.getElementById('map'), { zoom: 15, center: address });
-        
+
         var marker = new google.maps.Marker({
             position: address,
             map: map,
-            
-            
+
+
             title:'@Model.FirstName   @Model.LastName'
-            
-        
+
+
         });
  }
 @*@foreach(GeoResult result in Model.)

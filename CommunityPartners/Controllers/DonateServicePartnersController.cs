@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using CommunityPartners.Data;
 using CommunityPartners.Models;
 using System.Security.Claims;
+using System.Reflection.Metadata.Ecma335;
 
 namespace CommunityPartners.Controllers
 {
@@ -31,16 +32,43 @@ namespace CommunityPartners.Controllers
             {
                 return NotFound();
             }
-
             var donateServicePartners = await _context.DonateServicePartnersers
                 .FirstOrDefaultAsync(m => m.DonateServicePartnersId == id);
-            if (donateServicePartners == null)
+            //var partner = _context.Partners.Include(p => p.PartnerId == donateServicePartners.PartnerId);
+            //partner.PartnerId = donateServicePartners.PartnerId;
+            var partner = await _context.Partners
+               .Include(p => p.IdentityUser)
+               .FirstOrDefaultAsync(m => m.PartnerId == donateServicePartners.PartnerId);
+
+            //var partner = await _context.Partners
+            //    .Include(p => p.IdentityUser)
+            //    .FirstOrDefaultAsync(m => m.PartnerId == id);
+
+
+            if (partner == null)
             {
                 return NotFound();
             }
 
-            return View(donateServicePartners);
+            return View(partner);
+            //var donateServicePartners = await _context.DonateServicePartnersers
+            //    .FirstOrDefaultAsync(m => m.DonateServicePartnersId == id);
+            //var popp = _context.Partners.Where(p => p.PartnerId == donateServicePartners.PartnerId);
+
+
+
+            //var donateServicePartners = await _context.DonateServicePartnersers
+            //    .FirstOrDefaultAsync(m => m.DonateServicePartnersId == id);
+            //var lat = _context.Partners.Where(p => p.PartnerId == donateServicePartners.PartnerId);
+            //partner.PartnerId = donateServicePartners.PartnerId;
+            //string latt = partner.PartnerLat;
+            //string longg = partner.PartnerLong;
+            //var location = partner.PartnerLat;
+
+
+            //return View(latt, longg);
         }
+
 
         // GET: DonateServicePartners/Details/5
         public async Task<IActionResult> Details(int? id)
