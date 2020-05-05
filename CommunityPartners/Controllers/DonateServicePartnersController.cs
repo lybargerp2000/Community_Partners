@@ -89,13 +89,20 @@ namespace CommunityPartners.Controllers
         }
 
         // GET: DonateServicePartners/Create
-        public IActionResult Create(Partner partner, DonateServicePartners donateServicePartners, DonateService donateService)
+        public IActionResult Create(int? id)
         {
 
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
             ViewData["PartnerId"] = new SelectList(_context.DonateServices, "PartnerId", "DonateServiceId");
-            
-            
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var donateService =  _context.DonateServices.FindAsync(id);
+            //var partner = _context.Partners.Include(p => p.PartnerId == donateServicePartners.PartnerId);
+            //partner.PartnerId = donateServicePartners.PartnerId;
+
+
             //donateServicePartners.PartnerId = partner.PartnerId;
             return View();
         }
@@ -105,7 +112,7 @@ namespace CommunityPartners.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(DonateServicePartners donateServicePartners, Partner partner, DonateService donateService)
+        public async Task<IActionResult> Create(DonateServicePartners donateServicePartners, Partner partner, DonateService donateService, int id)
         {
             if (ModelState.IsValid)
             {
@@ -113,11 +120,13 @@ namespace CommunityPartners.Controllers
                 var viewerInDb = _context.Partners.Where(m => m.IdentityUserId == userId).FirstOrDefault();
                 var applicationDbContext = _context.Partners.Include(p => p.IdentityUser);
                 donateServicePartners.PartnerId = viewerInDb.PartnerId;
-               
+                var donateServicee = _context.DonateServices.FindAsync(id);
+                donateServicePartners.DonateServiceId = id;
+
                 //donateServicePartners.DonateServiceId = donateService.DonateServiceId;
                 //Set up logic for setting current DonateServiceId
                 //var Id = _context.DonateServices.Where(i => i.DonateServiceId == donateServicePartners.DonateServiceId);
-               
+
                 //donateServicePartners.DonateServiceId = Id;
                 _context.Add(donateServicePartners);
                 await _context.SaveChangesAsync();

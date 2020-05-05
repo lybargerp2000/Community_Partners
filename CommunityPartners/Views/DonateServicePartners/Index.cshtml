@@ -25,12 +25,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Accepted)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PayPalId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RatingHelpfulnessId)
-            </th>
+            
             <th></th>
         </tr>
     </thead>
@@ -49,12 +44,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Accepted)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PayPalId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RatingHelpfulnessId)
-            </td>
+            
             <td>
                 <a asp-action="Delete" asp-route-id="@item.DonateServicePartnersId">Delete</a> |
                 <a asp-action="Details" asp-route-id="@item.DonateServicePartnersId">Details</a> |
