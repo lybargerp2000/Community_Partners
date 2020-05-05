@@ -94,7 +94,7 @@ namespace CommunityPartners.Controllers
 
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
             ViewData["PartnerId"] = new SelectList(_context.DonateServices, "PartnerId", "DonateServiceId");
-            ViewData["DonateserviceId"] = new SelectList(_context.DonateServices, "DonateServiceId");
+            
             
             //donateServicePartners.PartnerId = partner.PartnerId;
             return View();
@@ -105,7 +105,7 @@ namespace CommunityPartners.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DonateServiceId")] DonateServicePartners donateServicePartners, Partner partner, DonateService donateService)
+        public async Task<IActionResult> Create(DonateServicePartners donateServicePartners, Partner partner, DonateService donateService)
         {
             if (ModelState.IsValid)
             {
@@ -113,7 +113,7 @@ namespace CommunityPartners.Controllers
                 var viewerInDb = _context.Partners.Where(m => m.IdentityUserId == userId).FirstOrDefault();
                 var applicationDbContext = _context.Partners.Include(p => p.IdentityUser);
                 donateServicePartners.PartnerId = viewerInDb.PartnerId;
-                var Id = _context.DonateServices.Include(i => i.DonateServiceId);
+               
                 //donateServicePartners.DonateServiceId = donateService.DonateServiceId;
                 //Set up logic for setting current DonateServiceId
                 //var Id = _context.DonateServices.Where(i => i.DonateServiceId == donateServicePartners.DonateServiceId);
