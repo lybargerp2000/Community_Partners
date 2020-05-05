@@ -22,9 +22,19 @@ namespace CommunityPartners.Controllers
         }
 
         // GET: DonateServicePartners
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(DonateServicePartners donateServicePartners, DonateService donateService, int id)
         {
-            return View(await _context.DonateServicePartnersers.ToListAsync());
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var viewerInDb = _context.Partners.Where(m => m.IdentityUserId == userId).FirstOrDefault();
+            var applicationDbContext = _context.Partners.Include(p => p.IdentityUser);
+            var partnerList = _context.DonateServicePartnersers.Where(d => d.DonateServiceId
+            == donateService.DonateServiceId && d.PartnerId == viewerInDb.PartnerId);
+            //donateServicePartners.PartnerId = viewerInDb.PartnerId;
+            //var donateServicee = _context.DonateServices.FindAsync(id);
+            //donateServicePartners.DonateServiceId = id;
+            //var partnerList = _context.DonateServicePartnersers.Where(t => t.DonateServiceId == donateservice.DonateServiceId && donateService.PartnerId == viewerInDb.PartnerId);
+
+            return View(await partnerList.ToListAsync());
         }
         public async Task<IActionResult> ViewPartnerLocation(int? id)
         {
