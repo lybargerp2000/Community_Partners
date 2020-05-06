@@ -9,6 +9,8 @@ using CommunityPartners.Data;
 using CommunityPartners.Models;
 using System.Security.Claims;
 using System.Reflection.Metadata.Ecma335;
+using Microsoft.EntityFrameworkCore.Internal;
+using System.Security.Cryptography.X509Certificates;
 
 namespace CommunityPartners.Controllers
 {
@@ -19,17 +21,19 @@ namespace CommunityPartners.Controllers
         public DonateServicePartnersController(ApplicationDbContext context)
         {
             _context = context;
+            
         }
 
         // GET: DonateServicePartners
-        public async Task<IActionResult> Index(DonateService donateService, DonateServicePartners donateServicePartners, int id)
+        public async Task<IActionResult> Index(DonateServicePartners donateServicePartners, int id)
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var viewerInDb = _context.Partners.Where(m => m.IdentityUserId == userId).FirstOrDefault();
             var applicationDbContext = _context.Partners.Include(p => p.IdentityUser);
-            var List = _context.DonateServicePartnersers;
-            var List2 = _context.DonateServices.Where(r => r.PartnerId == viewerInDb.PartnerId).First();
-            var List3 = List.Where(l => l.DonateServiceId == List2.DonateServiceId).ToListAsync();
+            var List5 = _context.DonateServices.Where(l => l.PartnerId == viewerInDb.PartnerId).First();
+                
+            var List3 = _context.DonateServicePartnersers.Where(l => l.DonateServiceId == List5.DonateServiceId).ToListAsync();
+            
             
             //var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             //var viewerInDb = _context.Partners.Where(m => m.IdentityUserId == userId).FirstOrDefault();
