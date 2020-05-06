@@ -51,7 +51,21 @@ namespace CommunityPartners.Controllers
 
             //return View(await partnerList.ToListAsync());
         }
-        public async Task<IActionResult> ViewPartnerLocation(int? id)
+        public async Task<IActionResult> PartnersAcceptedLocation()
+        {
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var viewerInDb = _context.Partners.Where(m => m.IdentityUserId == userId).FirstOrDefault();
+            var applicationDbContext = _context.Partners.Include(p => p.IdentityUser);
+
+            var List5 = _context.DonateServices.Where(l => l.PartnerId == viewerInDb.PartnerId).First();
+
+            var List3 = _context.DonateServicePartnersers.Where(l => l.DonateServiceId == List5.DonateServiceId).First();
+            var List4 = _context.Partners.Where(l => l.PartnerId == List3.PartnerId);
+
+            return View(List4);
+        }
+            public async Task<IActionResult> ViewPartnerLocation(int? id)
         {
             if (id == null)
             {
