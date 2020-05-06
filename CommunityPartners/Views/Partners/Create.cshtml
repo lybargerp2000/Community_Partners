@@ -13,10 +13,7 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="IdentityUserId" class="control-label"></label>
-                <select asp-for="IdentityUserId" class ="form-control" asp-items="ViewBag.IdentityUserId"></select>
-            </div>
+           
             <div class="form-group">
                 <label asp-for="FirstName" class="control-label"></label>
                 <input asp-for="FirstName" class="form-control" />
@@ -27,11 +24,7 @@
                 <input asp-for="LastName" class="form-control" />
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="HomeLocationId" class="control-label"></label>
-                <input asp-for="HomeLocationId" class="form-control" />
-                <span asp-validation-for="HomeLocationId" class="text-danger"></span>
-            </div>
+           
             <div class="form-group">
                 <label asp-for="PartnerPhone" class="control-label"></label>
                 <input asp-for="PartnerPhone" class="form-control" />
@@ -42,26 +35,10 @@
                 <input asp-for="ReOccurringDayRequest" class="form-control" />
                 <span asp-validation-for="ReOccurringDayRequest" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="RequestReceiveOrDonate" /> @Html.DisplayNameFor(model => model.RequestReceiveOrDonate)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="AmountDonated" class="control-label"></label>
-                <input asp-for="AmountDonated" class="form-control" />
-                <span asp-validation-for="AmountDonated" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Itemdonated" class="control-label"></label>
-                <input asp-for="Itemdonated" class="form-control" />
-                <span asp-validation-for="Itemdonated" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MilesTravelled" class="control-label"></label>
-                <input asp-for="MilesTravelled" class="form-control" />
-                <span asp-validation-for="MilesTravelled" class="text-danger"></span>
-            </div>
+           
+            
+           
+           
             <div class="form-group">
                 <label asp-for="PartnerAddress" class="control-label"></label>
                 <input asp-for="PartnerAddress" class="form-control" />
@@ -82,26 +59,9 @@
                 <input asp-for="PartnerZip" class="form-control" />
                 <span asp-validation-for="PartnerZip" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="PartnerLong" class="control-label"></label>
-                <input asp-for="PartnerLong" class="form-control" />
-                <span asp-validation-for="PartnerLong" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PartnerLat" class="control-label"></label>
-                <input asp-for="PartnerLat" class="form-control" />
-                <span asp-validation-for="PartnerLat" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PayPalId" class="control-label"></label>
-                <input asp-for="PayPalId" class="form-control" />
-                <span asp-validation-for="PayPalId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TransactionHistory" class="control-label"></label>
-                <input asp-for="TransactionHistory" class="form-control" />
-                <span asp-validation-for="TransactionHistory" class="text-danger"></span>
-            </div>
+          
+          
+            
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
