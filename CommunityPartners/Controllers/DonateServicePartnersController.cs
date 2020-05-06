@@ -22,19 +22,30 @@ namespace CommunityPartners.Controllers
         }
 
         // GET: DonateServicePartners
-        public async Task<IActionResult> Index(DonateServicePartners donateServicePartners, DonateService donateService, int id)
+        public async Task<IActionResult> Index(DonateService donateService, DonateServicePartners donateServicePartners, int id)
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var viewerInDb = _context.Partners.Where(m => m.IdentityUserId == userId).FirstOrDefault();
             var applicationDbContext = _context.Partners.Include(p => p.IdentityUser);
-            var partnerList = _context.DonateServicePartnersers.Where(d => d.DonateServiceId
-            == donateService.DonateServiceId && d.PartnerId == viewerInDb.PartnerId);
+            var List = _context.DonateServicePartnersers;
+            var List2 = _context.DonateServices.Where(r => r.PartnerId == viewerInDb.PartnerId).First();
+            var List3 = List.Where(l => l.DonateServiceId == List2.DonateServiceId).ToListAsync();
+            
+            //var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //var viewerInDb = _context.Partners.Where(m => m.IdentityUserId == userId).FirstOrDefault();
+            //var applicationDbContext = _context.Partners.Include(p => p.IdentityUser);
+            //var applicationDbContexts = _context.DonateServicePartnersers.Include(w => w.DonateServiceId);
+            
+            return View(await List3);
+            //var donateService = _context.DonateServices.Include(d => d.DonateServiceId == donateServicePartners.DonateServiceId);
+            //var partnerList = _context.DonateServicePartnersers.Where(d => d.DonateServiceId
+            //== donateService. && d.PartnerId == viewerInDb.PartnerId) ;
             //donateServicePartners.PartnerId = viewerInDb.PartnerId;
             //var donateServicee = _context.DonateServices.FindAsync(id);
             //donateServicePartners.DonateServiceId = id;
             //var partnerList = _context.DonateServicePartnersers.Where(t => t.DonateServiceId == donateservice.DonateServiceId && donateService.PartnerId == viewerInDb.PartnerId);
 
-            return View(await partnerList.ToListAsync());
+            //return View(await partnerList.ToListAsync());
         }
         public async Task<IActionResult> ViewPartnerLocation(int? id)
         {
