@@ -18,6 +18,10 @@ namespace CommunityPartners.Controllers
         {
             _context = context;
         }
+        //public IActionResult FilterPartnersByRating(RateService rateService)
+        //{
+        //    return View (rateService);
+        //}
 
         // GET: RateServices
         public async Task<IActionResult> Index()

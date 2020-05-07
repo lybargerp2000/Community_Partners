@@ -22,6 +22,15 @@ namespace CommunityPartners.Controllers
             _context = context;
             _geoCodeRequest = geoCodeRequest;
         }
+        public async Task <IActionResult> FilterPartnersByRating()
+        {
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var viewerInDb = _context.Partners.Where(m => m.IdentityUserId == userId).FirstOrDefault();
+            var applicationDbContext = _context.Partners.Include(p => p.IdentityUser);
+
+            return View(await applicationDbContext.ToListAsync());
+        }
         public async Task<IActionResult> AcceptService(int? id)
         {
             if (id == null)

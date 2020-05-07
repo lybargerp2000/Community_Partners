@@ -37,15 +37,6 @@ namespace CommunityPartners.Controllers
             
             return View(await applicationDbContext.ToListAsync());
            
-            //var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            //partner.IdentityUserId = userId;
-            ////var partner = await _context.Partners
-            //var partner1 = await _context.Partners.Include(p => p.IdentityUser)
-            //.FirstOrDefaultAsync(m => m.IdentityUserId == userId);
-
-            ////return View(partner1);
-            //return View(partner);
-
         }
        
 
