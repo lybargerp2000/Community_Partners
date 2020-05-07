@@ -55,6 +55,7 @@
                 <a asp-action="Delete" asp-route-id="@item.DonateServiceId">Delete</a>
                 @*<a asp-action="AcceptService" asp-route-id="@item.DonateServiceId">Accept Service</a>*@
                 <a class="nav-link text-dark" asp-area="" asp-controller="DonateServicePartners" asp-route-id="@item.DonateServiceId" asp-action="Create">Accept Serivce</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="RateServices" asp-route-id="@item.DonateServiceId" asp-action="Create">Rate Service</a>
             </td>
         </tr>
 }

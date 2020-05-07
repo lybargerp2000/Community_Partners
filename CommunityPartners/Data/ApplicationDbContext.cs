@@ -38,6 +38,20 @@ namespace CommunityPartners.Data
                     new PartnerRadius { PartnerRadiusId = 3, RadiusMiles = 10, RadiusMeters = 16000 },
                     new PartnerRadius { PartnerRadiusId = 4, RadiusMiles = 30, RadiusMeters = 50000 }
                 );
+            builder.Entity<RateService>()
+                .HasData(
+                new RateService { RateServiceId = 1, Rating = 1},
+                new RateService { RateServiceId = 2, Rating = 2},
+                new RateService { RateServiceId = 3, Rating = 3},
+                new RateService { RateServiceId = 4, Rating = 4},
+                new RateService { RateServiceId = 5, Rating = 5},
+                new RateService { RateServiceId = 6, Rating = 6 },
+                new RateService { RateServiceId = 7, Rating = 7 },
+                new RateService { RateServiceId = 8, Rating = 8 },
+                new RateService { RateServiceId = 9, Rating = 9 },
+                new RateService { RateServiceId = 10, Rating = 10 }
+
+                );
         }
         public DbSet<Models.PartnerRadius> partnerRadii { get; set; }
         public DbSet<Models.Partner> Partners { get; set; }
@@ -48,6 +62,7 @@ namespace CommunityPartners.Data
         public DbSet<Models.RequestService> RequestServices { get; set; }
         public DbSet<Models.DonateServicePartners> DonateServicePartnersers { get; set; }
         public DbSet<Models.RequestServicePartners> RequestServicePartnersers { get; set; }
+        public DbSet<Models.RateService> RateServices { get; set; }
         //public DbSet<Models.GeoLocation> GeoLocationss { get; set; }
         //public DbSet<Models.GeoGeometry> GeoGeometries { get; set; }
         //public DbSet<Models.GeoLocation_Location> GeoLocations { get; set; }

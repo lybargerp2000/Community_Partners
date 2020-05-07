@@ -61,7 +61,7 @@ namespace CommunityPartners.Controllers
             var List5 = _context.DonateServices.Where(l => l.PartnerId == viewerInDb.PartnerId).First();
 
             var List3 = _context.DonateServicePartnersers.Where(l => l.DonateServiceId == List5.DonateServiceId).First();
-            var List4 = _context.Partners.Where(l => l.PartnerId == List3.PartnerId);
+            var List4 = _context.Partners.Where(l => l.PartnerId == List3.PartnerId).AsAsyncEnumerable();
 
             return View(List4);
         }
