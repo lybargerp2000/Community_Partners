@@ -21,8 +21,8 @@ namespace CommunityPartners.Models
         public GeoGeometry geometry { get; set; }
         public string place_id { get; set; }
         public GeoPlus_Code plus_code { get; set; }
-        public string lat { get; set; }
-        public string lng { get; set; }
+        public string [] lat { get; set; }
+        public string [] lng { get; set; }
 
     }
 

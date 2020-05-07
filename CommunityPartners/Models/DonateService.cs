@@ -20,5 +20,7 @@ namespace CommunityPartners.Models
         public string lat { get; set; }
         [NotMapped]
         public string longg { get; set; }
+        [NotMapped]
+        public GeoResult [] geoResults { get; set; }
     }
 }

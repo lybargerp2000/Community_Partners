@@ -25,11 +25,11 @@
     function initMap() {
         var address = { lat: @Model.partner.PartnerLat  , lng: @Model.partner.PartnerLong};
         var map = new google.maps.Map(
-            document.getElementById('map'), { zoom: 5, center: address });
-      @foreach(DonateService geoResult in Model.donateService)
+            document.getElementById('map'), { zoom: 10, center: address });
+      @foreach(GeoResult geoResult in Model.partner.geoResult)
 {
 <text> addMarker({
-coords: { lat: @geoResult.lat, lng: @geoResult.longg},
+coords: { lat: @geoResult.lat, lng: @geoResult.lng},
 @*content: '<h2>@result.FirstName</h2>'+'<h2>@result.LastName</h2>' + '<h2>service rating @result.RatingHelpfulnessId</h2>'*@
 
 });</text>

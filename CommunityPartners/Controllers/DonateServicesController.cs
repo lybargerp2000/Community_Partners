@@ -23,21 +23,30 @@ namespace CommunityPartners.Controllers
             _context = context;
             _geoCodeRequest = geoCodeRequest;
         }
-        public async Task <IActionResult> FilterPartnersByRating(MapView mapView)
+        public async Task <IActionResult> FilterPartnersByRating(MapView mapView, GeoResult geoResult)
         {
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var viewerInDb = _context.Partners.Where(m => m.IdentityUserId == userId).FirstOrDefault();
-            
+            var applicationDbContext = _context.Partners.Include(p => p.IdentityUser);
             mapView.partner = viewerInDb;
+            var rating = _context.RateServices.Where(r => r.Rating > 0 && r.DonateServiceId > 0).First();
+            var ds = _context.DonateServices.Where(s => s.DonateServiceId == rating.DonateServiceId).First();
+            mapView.donateService = ds;
+            var part = _context.Partners.Where(p => p.PartnerId == ds.PartnerId).First();
             
+            //var coords = part.PartnerLat + "," + part.PartnerLong;
+            
+            //var coor = part.PartnerLat.First();
+            //var coorLang = part.PartnerLong;
+           
+            
+            //var part = _context.Partners.Where(p => p.PartnerId == ds.PartnerId);
             
 
-           
-         
-            var applicationDbContext = _context.Partners.Include(p => p.IdentityUser);
             
-            return View(mapView);
+
+            return View (mapView);
            
         }
         public async Task<IActionResult> AcceptService(int? id)
