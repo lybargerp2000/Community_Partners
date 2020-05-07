@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CommunityPartners.Models.Partner>
+﻿@model CommunityPartners.MapViewModels.MapView
 
 @{
     ViewData["Title"] = "FilterPartnersByRating";
@@ -22,17 +22,17 @@
 <script>
 // Initialize and add the map
     function initMap() {
-        var address = { lat: 40.432987 , lng: -104.746994};
+        var address = { lat: @Model.partner.PartnerLat  , lng: @Model.partner.PartnerLong};
         var map = new google.maps.Map(
             document.getElementById('map'), { zoom: 5, center: address });
-      @foreach(Partner result in Model)
+      @*@foreach(Partner result in)
 {
 <text> addMarker({
 coords: { lat: @result.PartnerLat, lng: @result.PartnerLong },
 content: '<h2>@result.FirstName</h2>'+'<h2>@result.LastName</h2>' + '<h2>service rating @result.RatingHelpfulnessId</h2>'
 
 });</text>
-}
+}*@
 function addMarker(props) {
 var marker = new google.maps.Marker({ position: props.coords, map: map });
 if (props.content) {

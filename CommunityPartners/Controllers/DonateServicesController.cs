@@ -9,6 +9,7 @@ using CommunityPartners.Data;
 using CommunityPartners.Models;
 using CommunityPartners.Contracts;
 using System.Security.Claims;
+using CommunityPartners.MapViewModels;
 
 namespace CommunityPartners.Controllers
 {
@@ -27,9 +28,17 @@ namespace CommunityPartners.Controllers
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var viewerInDb = _context.Partners.Where(m => m.IdentityUserId == userId).FirstOrDefault();
+            MapView mapView = new MapView();
             var applicationDbContext = _context.Partners.Include(p => p.IdentityUser);
+            var loc = viewerInDb.PartnerLat;
+            var loc2 = viewerInDb.PartnerLong;
+            mapView.partner.PartnerLat = loc;
+            mapView.partner.PartnerLong = loc2;
 
-            return View(await applicationDbContext.ToListAsync());
+
+            //viewerInDb.PartnerId = mapView.partner.PartnerId;
+            return View(mapView);
+            //return View(await applicationDbContext.ToListAsync());
         }
         public async Task<IActionResult> AcceptService(int? id)
         {
