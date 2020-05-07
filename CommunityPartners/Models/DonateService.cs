@@ -16,5 +16,9 @@ namespace CommunityPartners.Models
         public int DonationRadiusMiles {get; set;}
         public int Zipcode { get; set; }
         public string Description { get; set; }
+        [NotMapped]
+        public string lat { get; set; }
+        [NotMapped]
+        public string longg { get; set; }
     }
 }

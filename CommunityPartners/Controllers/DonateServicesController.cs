@@ -23,22 +23,22 @@ namespace CommunityPartners.Controllers
             _context = context;
             _geoCodeRequest = geoCodeRequest;
         }
-        public async Task <IActionResult> FilterPartnersByRating()
+        public async Task <IActionResult> FilterPartnersByRating(MapView mapView)
         {
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var viewerInDb = _context.Partners.Where(m => m.IdentityUserId == userId).FirstOrDefault();
-            MapView mapView = new MapView();
+            
+            mapView.partner = viewerInDb;
+            
+            
+
+           
+         
             var applicationDbContext = _context.Partners.Include(p => p.IdentityUser);
-            var loc = viewerInDb.PartnerLat;
-            var loc2 = viewerInDb.PartnerLong;
-            mapView.partner.PartnerLat = loc;
-            mapView.partner.PartnerLong = loc2;
-
-
-            //viewerInDb.PartnerId = mapView.partner.PartnerId;
+            
             return View(mapView);
-            //return View(await applicationDbContext.ToListAsync());
+           
         }
         public async Task<IActionResult> AcceptService(int? id)
         {

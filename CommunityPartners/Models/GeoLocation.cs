@@ -10,6 +10,9 @@ namespace CommunityPartners.Models
        //public int GeoLocationId { get; set; }
         public GeoResult[] results { get; set; }
         public string status { get; set; }
+        public float lat { get; set; }
+        public float lng { get; set; }
+
     }
     public class GeoResult
     {
@@ -18,7 +21,9 @@ namespace CommunityPartners.Models
         public GeoGeometry geometry { get; set; }
         public string place_id { get; set; }
         public GeoPlus_Code plus_code { get; set; }
-       
+        public string lat { get; set; }
+        public string lng { get; set; }
+
     }
 
     public class GeoGeometry

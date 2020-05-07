@@ -17,6 +17,7 @@
 <br />
 <br />
 <a asp-action="SelectState">Your Partners in the USA!!!</a>
+<a asp-action="FilterPartnersByRating" asp-route-id="@Model.donateService">Filter Partners by Rating</a>
 
 
 <script>
@@ -25,14 +26,14 @@
         var address = { lat: @Model.partner.PartnerLat  , lng: @Model.partner.PartnerLong};
         var map = new google.maps.Map(
             document.getElementById('map'), { zoom: 5, center: address });
-      @*@foreach(Partner result in)
+      @foreach(DonateService geoResult in Model.donateService)
 {
 <text> addMarker({
-coords: { lat: @result.PartnerLat, lng: @result.PartnerLong },
-content: '<h2>@result.FirstName</h2>'+'<h2>@result.LastName</h2>' + '<h2>service rating @result.RatingHelpfulnessId</h2>'
+coords: { lat: @geoResult.lat, lng: @geoResult.longg},
+@*content: '<h2>@result.FirstName</h2>'+'<h2>@result.LastName</h2>' + '<h2>service rating @result.RatingHelpfulnessId</h2>'*@
 
 });</text>
-}*@
+}
 function addMarker(props) {
 var marker = new google.maps.Marker({ position: props.coords, map: map });
 if (props.content) {
