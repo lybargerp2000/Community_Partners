@@ -54,10 +54,12 @@ namespace CommunityPartners.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RateServiceId,DonateServiceId,Date,Rating,Description")] RateService rateService)
+        public async Task<IActionResult> Create([Bind("RateServiceId,DonateServiceId,Date,Rating,Description")] RateService rateService, int id)
         {
             if (ModelState.IsValid)
             {
+                var donateService = _context.DonateServices.FindAsync(id);
+                rateService.DonateServiceId = id;
                 _context.Add(rateService);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
