@@ -40,6 +40,8 @@ namespace CommunityPartners.Models
         public int RatingHelpfulnessId { get; set; }
         [NotMapped]
         public GeoResult geoResult { get; set; }
+        [NotMapped]
+        public int RatingSelect { get; set; }
 
         //public RequestService RequestService { get; set; }
         //public DonateService DonateService { get; set; }

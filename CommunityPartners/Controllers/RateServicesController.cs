@@ -22,26 +22,19 @@ namespace CommunityPartners.Controllers
         }
         public async Task<IActionResult> FilterPartnersByRating(MapView mapView, GeoResult geoResult)
         {
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
-            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var viewerInDb = _context.Partners.Where(m => m.IdentityUserId == userId).FirstOrDefault();
-            var applicationDbContext = _context.Partners.Include(p => p.IdentityUser);
-            mapView.partner = viewerInDb;
-            var rating = _context.RateServices.Where(r => r.Rating > 1).First();
-            var part = _context.Partners.Where(p => p.PartnerId == rating.PartnerId);
-            //var ds = _context.DonateServices.Where(s => s.DonateServiceId == rating.DonateServiceId).First();
-      
-            //var part = _context.Partners.Where(p => p.PartnerId == ds.PartnerId);
+            
+                ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var viewerInDb = _context.Partners.Where(m => m.IdentityUserId == userId).FirstOrDefault();
+                var applicationDbContext = _context.Partners.Include(p => p.IdentityUser);
+                mapView.partner = viewerInDb;
+                var input = 10;
+                var rating = _context.RateServices.Where(r => r.Rating > input).First();
+                var part = _context.Partners.Where(p => p.PartnerId == rating.PartnerId);
+                
 
-            //var coords = part.PartnerLat + "," + part.PartnerLong;
-
-            //var coor = part.PartnerLat.First();
-            //var coorLang = part.PartnerLong;
-
-            //var part = _context.Partners.Where(p => p.PartnerId == ds.PartnerId);
-
-            return View(await part.ToListAsync());
-
+                return View(await part.ToListAsync());
+            
         }
         // GET: RateServices
         public async Task<IActionResult> Index()

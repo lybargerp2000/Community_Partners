@@ -16,6 +16,8 @@ namespace CommunityPartners.Models
         public string Description { get; set; }
         [ForeignKey("PartnerId")]
         public int PartnerId { get; set; }
+        [NotMapped]
+        public int RatingSelect { get; set; }
 
     }
 }

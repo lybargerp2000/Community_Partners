@@ -15,7 +15,26 @@
 <div id="map"></div>
 <br />
 <br />
-<a asp-action="SelectState">Your Partners in the USA!!!</a>
+<div class="custom-select" style="width:200px;">
+    <select>
+        <option value="0">Select Rating:</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+    </select>
+</div>
+@*<span asp-validation-for="RatingSelect" class="text-danger"></span>
+<div class="form-group">
+    <input type="submit" value="Submit" class="btn btn-primary" />
+</div>*@
+<a class="nav-link text-dark" asp-area="" asp-controller="RateServices" asp-action="Create">Rate Service</a>
 
 
 <script>
