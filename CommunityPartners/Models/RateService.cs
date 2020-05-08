@@ -14,6 +14,8 @@ namespace CommunityPartners.Models
         public DateTime Date { get; set; }
         public int Rating { get; set; }
         public string Description { get; set; }
+        [ForeignKey("PartnerId")]
+        public int PartnerId { get; set; }
 
     }
 }

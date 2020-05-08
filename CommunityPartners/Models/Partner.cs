@@ -39,7 +39,7 @@ namespace CommunityPartners.Models
         [ForeignKey("RatingId")]
         public int RatingHelpfulnessId { get; set; }
         [NotMapped]
-        public GeoResult[] geoResult { get; set; }
+        public GeoResult geoResult { get; set; }
 
         //public RequestService RequestService { get; set; }
         //public DonateService DonateService { get; set; }

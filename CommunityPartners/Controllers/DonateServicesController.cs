@@ -30,23 +30,19 @@ namespace CommunityPartners.Controllers
             var viewerInDb = _context.Partners.Where(m => m.IdentityUserId == userId).FirstOrDefault();
             var applicationDbContext = _context.Partners.Include(p => p.IdentityUser);
             mapView.partner = viewerInDb;
-            var rating = _context.RateServices.Where(r => r.Rating > 0 && r.DonateServiceId > 0).First();
+            var rating = _context.RateServices.Where(r => r.Rating > 1).First();
             var ds = _context.DonateServices.Where(s => s.DonateServiceId == rating.DonateServiceId).First();
-            mapView.donateService = ds;
-            var part = _context.Partners.Where(p => p.PartnerId == ds.PartnerId).First();
+            //mapView.donateService = ds;
+            var part = _context.Partners.Where(p => p.PartnerId == ds.PartnerId);
             
             //var coords = part.PartnerLat + "," + part.PartnerLong;
             
             //var coor = part.PartnerLat.First();
             //var coorLang = part.PartnerLong;
-           
             
             //var part = _context.Partners.Where(p => p.PartnerId == ds.PartnerId);
             
-
-            
-
-            return View (mapView);
+            return View (await part.ToListAsync());
            
         }
         public async Task<IActionResult> AcceptService(int? id)

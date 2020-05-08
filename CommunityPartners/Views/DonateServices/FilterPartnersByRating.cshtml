@@ -1,8 +1,7 @@
-﻿@model CommunityPartners.MapViewModels.MapView
-
+﻿@model IEnumerable<CommunityPartners.Models.Partner>
 @{
-    ViewData["Title"] = "FilterPartnersByRating";
-    Layout = "~/Views/Shared/ViewLocationDonatePartners.cshtml";
+    ViewData["Title"] = "TFilterPartnersByRating";
+    Layout = "~/Views/Shared/ViewDonateService.cshtml";
 }
 
 <style>
@@ -17,20 +16,19 @@
 <br />
 <br />
 <a asp-action="SelectState">Your Partners in the USA!!!</a>
-<a asp-action="FilterPartnersByRating" asp-route-id="@Model.donateService">Filter Partners by Rating</a>
 
 
 <script>
 // Initialize and add the map
     function initMap() {
-        var address = { lat: @Model.partner.PartnerLat  , lng: @Model.partner.PartnerLong};
+        var address = { lat: 40.432987 , lng: -104.746994};
         var map = new google.maps.Map(
-            document.getElementById('map'), { zoom: 10, center: address });
-      @foreach(GeoResult geoResult in Model.partner.geoResult)
+            document.getElementById('map'), { zoom: 5, center: address });
+      @foreach(Partner result in Model)
 {
 <text> addMarker({
-coords: { lat: @geoResult.lat, lng: @geoResult.lng},
-@*content: '<h2>@result.FirstName</h2>'+'<h2>@result.LastName</h2>' + '<h2>service rating @result.RatingHelpfulnessId</h2>'*@
+coords: { lat: @result.PartnerLat, lng: @result.PartnerLong },
+content: '<h2>@result.FirstName</h2>'+'<h2>@result.LastName</h2>'
 
 });</text>
 }
@@ -50,4 +48,6 @@ infoWindow.open(map, marker)
 
 <script src="https://maps.googleapis.com/maps/api/js?key=@APIKEYS.GoogleAPIKey&callback=initMap"
         async defer></script>
+
+
 

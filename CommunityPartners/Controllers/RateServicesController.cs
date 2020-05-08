@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CommunityPartners.Data;
 using CommunityPartners.Models;
+using CommunityPartners.MapViewModels;
+using System.Security.Claims;
 
 namespace CommunityPartners.Controllers
 {
@@ -18,11 +20,29 @@ namespace CommunityPartners.Controllers
         {
             _context = context;
         }
-        //public IActionResult FilterPartnersByRating(RateService rateService)
-        //{
-        //    return View (rateService);
-        //}
+        public async Task<IActionResult> FilterPartnersByRating(MapView mapView, GeoResult geoResult)
+        {
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var viewerInDb = _context.Partners.Where(m => m.IdentityUserId == userId).FirstOrDefault();
+            var applicationDbContext = _context.Partners.Include(p => p.IdentityUser);
+            mapView.partner = viewerInDb;
+            var rating = _context.RateServices.Where(r => r.Rating > 1).First();
+            var part = _context.Partners.Where(p => p.PartnerId == rating.PartnerId);
+            //var ds = _context.DonateServices.Where(s => s.DonateServiceId == rating.DonateServiceId).First();
+      
+            //var part = _context.Partners.Where(p => p.PartnerId == ds.PartnerId);
 
+            //var coords = part.PartnerLat + "," + part.PartnerLong;
+
+            //var coor = part.PartnerLat.First();
+            //var coorLang = part.PartnerLong;
+
+            //var part = _context.Partners.Where(p => p.PartnerId == ds.PartnerId);
+
+            return View(await part.ToListAsync());
+
+        }
         // GET: RateServices
         public async Task<IActionResult> Index()
         {
@@ -58,12 +78,16 @@ namespace CommunityPartners.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RateServiceId,DonateServiceId,Date,Rating,Description")] RateService rateService, int id)
+        public async Task<IActionResult> Create([Bind("RateServiceId,DonateServiceId,Date,Rating,Description")] RateService rateService, int id, Partner partner)
         {
             if (ModelState.IsValid)
             {
-                var donateService = _context.DonateServices.FindAsync(id);
+                var donateService = _context.DonateServices.FindAsync(id).Result;
+                var partnerId = _context.Partners.Where(p => p.PartnerId == donateService.PartnerId).FirstOrDefault();
+               
+                
                 rateService.DonateServiceId = id;
+                rateService.PartnerId = partnerId.PartnerId;
                 _context.Add(rateService);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

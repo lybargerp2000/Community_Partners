@@ -1,8 +1,7 @@
 ﻿@model IEnumerable<CommunityPartners.Models.Partner>
-
 @{
-    ViewData["Title"] = "SearchForPartners";
-    Layout = "~/Views/Shared/ViewLocationDonatePartners.cshtml";
+    ViewData["Title"] = "FilterPartnersByRating";
+    Layout = "~/Views/Shared/ViewDonateService.cshtml";
 }
 
 <style>
@@ -29,7 +28,7 @@
 {
 <text> addMarker({
 coords: { lat: @result.PartnerLat, lng: @result.PartnerLong },
-content: '<h2>@result.FirstName</h2>'+'<h2>@result.LastName</h2>' 
+content: '<h2>@result.FirstName</h2>'+'<h2>@result.LastName</h2>'
 
 });</text>
 }
@@ -49,4 +48,7 @@ infoWindow.open(map, marker)
 
 <script src="https://maps.googleapis.com/maps/api/js?key=@APIKEYS.GoogleAPIKey&callback=initMap"
         async defer></script>
+
+
+
 

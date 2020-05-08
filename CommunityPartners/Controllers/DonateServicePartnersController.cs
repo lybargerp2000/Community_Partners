@@ -35,21 +35,8 @@ namespace CommunityPartners.Controllers
             var List3 = _context.DonateServicePartnersers.Where(l => l.DonateServiceId == List5.DonateServiceId).ToListAsync();
             
             
-            //var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            //var viewerInDb = _context.Partners.Where(m => m.IdentityUserId == userId).FirstOrDefault();
-            //var applicationDbContext = _context.Partners.Include(p => p.IdentityUser);
-            //var applicationDbContexts = _context.DonateServicePartnersers.Include(w => w.DonateServiceId);
-            
             return View(await List3);
-            //var donateService = _context.DonateServices.Include(d => d.DonateServiceId == donateServicePartners.DonateServiceId);
-            //var partnerList = _context.DonateServicePartnersers.Where(d => d.DonateServiceId
-            //== donateService. && d.PartnerId == viewerInDb.PartnerId) ;
-            //donateServicePartners.PartnerId = viewerInDb.PartnerId;
-            //var donateServicee = _context.DonateServices.FindAsync(id);
-            //donateServicePartners.DonateServiceId = id;
-            //var partnerList = _context.DonateServicePartnersers.Where(t => t.DonateServiceId == donateservice.DonateServiceId && donateService.PartnerId == viewerInDb.PartnerId);
-
-            //return View(await partnerList.ToListAsync());
+           
         }
         public async Task<IActionResult> PartnersAcceptedLocation()
         {
@@ -73,16 +60,10 @@ namespace CommunityPartners.Controllers
             }
             var donateServicePartners = await _context.DonateServicePartnersers
                 .FirstOrDefaultAsync(m => m.DonateServicePartnersId == id);
-            //var partner = _context.Partners.Include(p => p.PartnerId == donateServicePartners.PartnerId);
-            //partner.PartnerId = donateServicePartners.PartnerId;
+           
             var partner = await _context.Partners
                .Include(p => p.IdentityUser)
                .FirstOrDefaultAsync(m => m.PartnerId == donateServicePartners.PartnerId);
-
-            //var partner = await _context.Partners
-            //    .Include(p => p.IdentityUser)
-            //    .FirstOrDefaultAsync(m => m.PartnerId == id);
-
 
             if (partner == null)
             {
@@ -90,22 +71,7 @@ namespace CommunityPartners.Controllers
             }
 
             return View(partner);
-            //var donateServicePartners = await _context.DonateServicePartnersers
-            //    .FirstOrDefaultAsync(m => m.DonateServicePartnersId == id);
-            //var popp = _context.Partners.Where(p => p.PartnerId == donateServicePartners.PartnerId);
-
-
-
-            //var donateServicePartners = await _context.DonateServicePartnersers
-            //    .FirstOrDefaultAsync(m => m.DonateServicePartnersId == id);
-            //var lat = _context.Partners.Where(p => p.PartnerId == donateServicePartners.PartnerId);
-            //partner.PartnerId = donateServicePartners.PartnerId;
-            //string latt = partner.PartnerLat;
-            //string longg = partner.PartnerLong;
-            //var location = partner.PartnerLat;
-
-
-            //return View(latt, longg);
+            
         }
 
 
@@ -162,11 +128,6 @@ namespace CommunityPartners.Controllers
                 var donateServicee = _context.DonateServices.FindAsync(id);
                 donateServicePartners.DonateServiceId = id;
 
-                //donateServicePartners.DonateServiceId = donateService.DonateServiceId;
-                //Set up logic for setting current DonateServiceId
-                //var Id = _context.DonateServices.Where(i => i.DonateServiceId == donateServicePartners.DonateServiceId);
-
-                //donateServicePartners.DonateServiceId = Id;
                 _context.Add(donateServicePartners);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

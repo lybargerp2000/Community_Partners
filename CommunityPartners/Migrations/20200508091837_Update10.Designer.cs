@@ -4,14 +4,16 @@ using CommunityPartners.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CommunityPartners.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200508091837_Update10")]
+    partial class Update10
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -267,9 +269,6 @@ namespace CommunityPartners.Migrations
                     b.Property<int>("DonateServiceId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PartnerId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
@@ -283,7 +282,6 @@ namespace CommunityPartners.Migrations
                             RateServiceId = 1,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DonateServiceId = 0,
-                            PartnerId = 0,
                             Rating = 1
                         },
                         new
@@ -291,7 +289,6 @@ namespace CommunityPartners.Migrations
                             RateServiceId = 2,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DonateServiceId = 0,
-                            PartnerId = 0,
                             Rating = 2
                         },
                         new
@@ -299,7 +296,6 @@ namespace CommunityPartners.Migrations
                             RateServiceId = 3,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DonateServiceId = 0,
-                            PartnerId = 0,
                             Rating = 3
                         },
                         new
@@ -307,7 +303,6 @@ namespace CommunityPartners.Migrations
                             RateServiceId = 4,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DonateServiceId = 0,
-                            PartnerId = 0,
                             Rating = 4
                         },
                         new
@@ -315,7 +310,6 @@ namespace CommunityPartners.Migrations
                             RateServiceId = 5,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DonateServiceId = 0,
-                            PartnerId = 0,
                             Rating = 5
                         },
                         new
@@ -323,7 +317,6 @@ namespace CommunityPartners.Migrations
                             RateServiceId = 6,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DonateServiceId = 0,
-                            PartnerId = 0,
                             Rating = 6
                         },
                         new
@@ -331,7 +324,6 @@ namespace CommunityPartners.Migrations
                             RateServiceId = 7,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DonateServiceId = 0,
-                            PartnerId = 0,
                             Rating = 7
                         },
                         new
@@ -339,7 +331,6 @@ namespace CommunityPartners.Migrations
                             RateServiceId = 8,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DonateServiceId = 0,
-                            PartnerId = 0,
                             Rating = 8
                         },
                         new
@@ -347,7 +338,6 @@ namespace CommunityPartners.Migrations
                             RateServiceId = 9,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DonateServiceId = 0,
-                            PartnerId = 0,
                             Rating = 9
                         },
                         new
@@ -355,7 +345,6 @@ namespace CommunityPartners.Migrations
                             RateServiceId = 10,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DonateServiceId = 0,
-                            PartnerId = 0,
                             Rating = 10
                         });
                 });
@@ -479,15 +468,15 @@ namespace CommunityPartners.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "56d0543d-bd02-4088-b206-a3ad026d16f1",
-                            ConcurrencyStamp = "ee2100f7-9c9a-419f-8301-b1465cfe78c9",
+                            Id = "9b1a7259-2077-4963-896c-1ae17295f8dc",
+                            ConcurrencyStamp = "062e3210-7212-40ad-bc62-9ff08f542c87",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "b2019e47-1934-4301-8930-b9c4e00faad1",
-                            ConcurrencyStamp = "48570f15-75c4-4777-b886-6087888a1aef",
+                            Id = "688eeeba-e4e8-43c8-89e9-61c3a87c9ea3",
+                            ConcurrencyStamp = "67b7aca7-8c52-4fcf-ab3d-ef2d1f19361e",
                             Name = "Partner",
                             NormalizedName = "PARTNER"
                         });
