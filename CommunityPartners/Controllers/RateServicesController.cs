@@ -28,17 +28,13 @@ namespace CommunityPartners.Controllers
             return View();
         }
         [HttpPost]
-        public async Task <IActionResult> SelectRating(int id)
+        public async Task <IActionResult> SelectRating(RateService rateService)
         {
 
-            //rate.RatingSelect = InputType();
-            //_context.Add(rate);
-            //await _context.SaveChangesAsync();
-            var input = 8;
+            
+            var input = rateService.Rating;
             return IndexForRating(input);
-            //return View();
-
-            //return RedirectToAction(nameof(FilterPartnersByRating));
+            //return RedirectToAction (IndexForRating(input));
 
         }
         //public IActionResult IndexForRating()
@@ -52,8 +48,10 @@ namespace CommunityPartners.Controllers
         public IActionResult IndexForRating(int input)
         {
             var rating = _context.RateServices.Where(r => r.Rating > input).First();
-            var superrating = _context.RateServices.Where(s => s.RateServiceId == rating.RateServiceId).ToListAsync();
-            return View(superrating);
+            //var superrating = _context.RateServices.Where(s => s.RateServiceId == rating.RateServiceId).ToListAsync();
+            return RedirectToAction(nameof(Index));
+            //return Index(rating);
+            //return View(_context.RateServices.ToListAsync());
         }
 
         public async Task<IActionResult> FilterPartnersByRating(int input)
@@ -76,6 +74,7 @@ namespace CommunityPartners.Controllers
         public async Task<IActionResult> Index()
         {
             return View(await _context.RateServices.ToListAsync());
+            //return View(rating);
         }
 
         // GET: RateServices/Details/5
