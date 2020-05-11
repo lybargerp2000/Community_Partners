@@ -75,11 +75,13 @@ namespace CommunityPartners.Controllers
             
         }
         // GET: RateServices
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int submit)
         {
-            var input = View();
-            var applicationDbContext = _context.RateServices;
-            ViewData["Rating"] = new SelectList(_context.RateServices);
+            
+            
+            //var input = value;
+            var applicationDbContext = _context.RateServices.Where(a => a.Rating > submit);
+            //ViewData["Rating"] = new SelectList(_context.RateServices);
             
             //return View(admin);
             return View(await applicationDbContext.ToListAsync());

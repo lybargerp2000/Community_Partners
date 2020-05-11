@@ -65,20 +65,7 @@
     <div class="col-md-4">
         <form asp-action="Index">
 
-
-
-            @*<div class="form-group">
-                    <label asp-area="" asp-controller="RateSerices" asp-action="SelectRating"></label>
-                    <input asp-area="" asp-controller="RateServices" asp-action="SelectRating" class="form-control" />
-                    <span  asp-area="" asp-controller="RateServices" asp-action="SlectRating" class="text-danger"></span>
-                </div>*@
-            @*<div class="form-group">
-                    <label asp-for="Rating" class="control-label"></label>
-                    <select asp-for="Rating" class="form-control" asp-items="ViewBag.RateServiceId"></select>
-                </div>*@
-
-
-            <div class="custom-select" style="width:200px;">
+            @*<div class="custom-select" style="width:200px;">
                 <select>
                     <option value="0">Select rating:</option>
                     <option value="1">1</option>
@@ -92,10 +79,12 @@
                     <option value="9">9</option>
                     <option value="10">10</option>
 
-                </select>
-                <input type="submit" value="Index" class="btn btn-primary" />
+                </select>*@
+                <label input name="submit" id="submit" class="control-label"></label>
+                <input input name="submit" id="submit" class="form-control" />
+                <input input name="submit" id="submit" type="submit" value="Find High Rating" class="btn btn-primary" />
 
-            </div>
+            
         </form>
     </div>
 </div>
