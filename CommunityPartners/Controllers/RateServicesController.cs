@@ -11,6 +11,7 @@ using CommunityPartners.MapViewModels;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using DocumentFormat.OpenXml.Office2013.PowerPoint.Roaming;
 
 namespace CommunityPartners.Controllers
 {
@@ -31,10 +32,11 @@ namespace CommunityPartners.Controllers
         public async Task <IActionResult> SelectRating(RateService rateService)
         {
 
-            
-            var input = rateService.Rating;
-            return IndexForRating(input);
-            //return RedirectToAction (IndexForRating(input));
+            var valuee = 5;
+            var rating = _context.RateServices.Where(r => r.Rating > valuee).First();
+
+            //return IndexForRating(input, rateService);
+            return RedirectToAction(nameof(Index));
 
         }
         //public IActionResult IndexForRating()
@@ -45,13 +47,15 @@ namespace CommunityPartners.Controllers
         //    return View();
         //}
 
-        public IActionResult IndexForRating(int input)
+        public IActionResult IndexForRating(int input, RateService rateService)
         {
             var rating = _context.RateServices.Where(r => r.Rating > input).First();
-            //var superrating = _context.RateServices.Where(s => s.RateServiceId == rating.RateServiceId).ToListAsync();
-            return RedirectToAction(nameof(Index));
+            var superrating = _context.RateServices.Where(s => s.RateServiceId == rating.RateServiceId).ToListAsync();
+            //return View(rating);
+            //rateService.Rating = rating.Rating;
+            //return Index(superrating);
             //return Index(rating);
-            //return View(_context.RateServices.ToListAsync());
+            return View(_context.RateServices.ToListAsync());
         }
 
         public async Task<IActionResult> FilterPartnersByRating(int input)
@@ -73,8 +77,12 @@ namespace CommunityPartners.Controllers
         // GET: RateServices
         public async Task<IActionResult> Index()
         {
-            return View(await _context.RateServices.ToListAsync());
-            //return View(rating);
+            var input = View();
+            var applicationDbContext = _context.RateServices;
+            ViewData["Rating"] = new SelectList(_context.RateServices);
+            
+            //return View(admin);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: RateServices/Details/5

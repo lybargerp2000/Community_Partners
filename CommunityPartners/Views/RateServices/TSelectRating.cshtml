@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "SelectRating";
+    Layout = "~/Views/Shared/PartialForFilterRating.cshtml";
+}
+
+<h1>Select Rating</h1>
+
+
+<div class="custom-select" style="width:200px;">
+    <select>
+        <option value="0">Select rating:</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+    </select>
+    <input type="submit" value="value" class="btn btn-primary" asp-area="" asp-controller="RateServices" asp-action="Index"/>
+    @*<a class="nav-link text-dark" asp-area="" asp-controller="MapView" asp-action="SelectRadius">Select Radius to Show Nearby Partners</a>*@
+</div>
