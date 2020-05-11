@@ -9,6 +9,8 @@ using CommunityPartners.Data;
 using CommunityPartners.Models;
 using CommunityPartners.MapViewModels;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.AspNetCore.Mvc.Formatters;
 
 namespace CommunityPartners.Controllers
 {
@@ -20,15 +22,49 @@ namespace CommunityPartners.Controllers
         {
             _context = context;
         }
-        public async Task<IActionResult> FilterPartnersByRating(MapView mapView, GeoResult geoResult)
+        public IActionResult SelectRating()
+        {
+
+            return View();
+        }
+        [HttpPost]
+        public async Task <IActionResult> SelectRating(int id)
+        {
+
+            //rate.RatingSelect = InputType();
+            //_context.Add(rate);
+            //await _context.SaveChangesAsync();
+            var input = 8;
+            return IndexForRating(input);
+            //return View();
+
+            //return RedirectToAction(nameof(FilterPartnersByRating));
+
+        }
+        //public IActionResult IndexForRating()
+        //{
+        //    //var rating = _context.RateServices.Where(r => r.Rating > input).First();
+        //    //var superrating = _context.RateServices.Where(s => s.RateServiceId == rating.RateServiceId).ToListAsync();
+        //    //return View(superrating);
+        //    return View();
+        //}
+
+        public IActionResult IndexForRating(int input)
+        {
+            var rating = _context.RateServices.Where(r => r.Rating > input).First();
+            var superrating = _context.RateServices.Where(s => s.RateServiceId == rating.RateServiceId).ToListAsync();
+            return View(superrating);
+        }
+
+        public async Task<IActionResult> FilterPartnersByRating(int input)
         {
             
                 ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 var viewerInDb = _context.Partners.Where(m => m.IdentityUserId == userId).FirstOrDefault();
                 var applicationDbContext = _context.Partners.Include(p => p.IdentityUser);
-                mapView.partner = viewerInDb;
-                var input = 10;
+                //mapView.partner = viewerInDb;
+                
                 var rating = _context.RateServices.Where(r => r.Rating > input).First();
                 var part = _context.Partners.Where(p => p.PartnerId == rating.PartnerId);
                 

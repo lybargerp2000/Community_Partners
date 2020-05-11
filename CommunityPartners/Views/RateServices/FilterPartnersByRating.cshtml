@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<CommunityPartners.Models.Partner>
 @{
     ViewData["Title"] = "FilterPartnersByRating";
-    Layout = "~/Views/Shared/ViewDonateService.cshtml";
+    Layout = "~/Views/Shared/PartialForFilterRating.cshtml";
 }
 
 <style>
@@ -15,21 +15,8 @@
 <div id="map"></div>
 <br />
 <br />
-<div class="custom-select" style="width:200px;">
-    <select>
-        <option value="0">Select Rating:</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-    </select>
-</div>
+
+
 @*<span asp-validation-for="RatingSelect" class="text-danger"></span>
 <div class="form-group">
     <input type="submit" value="Submit" class="btn btn-primary" />

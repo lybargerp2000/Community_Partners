@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+@*@model CommunityPartners.Models.RateService*@
 
 
 <head>
@@ -21,10 +22,11 @@
                 <ul class="navbar-nav flex-grow-1">
 
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="DonateServicePartners" asp-action="Index">Accepted Services</a>
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Partners" asp-action="SearchForPartners">Search Partners</a>
-                        <a class="nav-link text-dark" asp-area="" asp-controller="RateServices" asp-action="SelectRating">Filter Partners by Rating as in Greater Than</a>
-                        
+                        <a class="nav-link text-dark" asp-area="" asp-controller="DonateServicePartners" asp-action="Index">Accepted Services!!!!</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Partners" asp-action="SearchForPartners">Search Partners!!!!</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="RateServices" asp-action="FilterPartnersByRating">Filter Partners by Rating!!!</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="RateServices" asp-action="IndexForRating">Select Rating Parameter!!!</a>
+
                     </li>
                 </ul>
             </div>
@@ -35,6 +37,28 @@
             @RenderBody()
         </main>
     </div>
+    @*<table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.results[0].ratingSelect)
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.results.Length; i++)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.results[i].ratingSelect)
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>*@
 
     <footer class="border-top footer text-muted">
         <div class="container">
