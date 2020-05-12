@@ -15,10 +15,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.DonateServiceId)
+                @Html.DisplayNameFor(model => model.ServiceDescription)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PartnerId)
+                @Html.DisplayNameFor(model => model.PartnerName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Date)
@@ -36,10 +36,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.DonateServiceId)
+                @Html.DisplayFor(modelItem => item.ServiceDescription)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PartnerId)
+                @Html.DisplayFor(modelItem => item.PartnerName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Date)

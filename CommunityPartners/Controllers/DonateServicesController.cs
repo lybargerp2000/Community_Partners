@@ -133,6 +133,7 @@ namespace CommunityPartners.Controllers
                 var viewerInDb = _context.Partners.Where(m => m.IdentityUserId == userId).FirstOrDefault();
                 var applicationDbContext = _context.Partners.Include(p => p.IdentityUser);
                 donateService.PartnerId = viewerInDb.PartnerId;
+                donateService.PartnerName = viewerInDb.FirstName;
                 _context.Add(donateService);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

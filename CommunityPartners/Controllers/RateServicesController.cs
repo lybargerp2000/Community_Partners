@@ -126,6 +126,9 @@ namespace CommunityPartners.Controllers
                 
                 rateService.DonateServiceId = id;
                 rateService.PartnerId = partnerId.PartnerId;
+                rateService.ServiceDescription = donateService.Description;
+                rateService.PartnerName = donateService.PartnerName;
+                
                 _context.Add(rateService);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

@@ -19,6 +19,9 @@ namespace CommunityPartners.Models
         [NotMapped]
         public int  RatingSelect { get; set; }
         public Result [] results { get; set; }
+        public string PartnerName { get; set; }
+        public string ServiceDescription { get; set; }
+        
         
         
 
