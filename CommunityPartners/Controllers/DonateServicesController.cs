@@ -23,6 +23,27 @@ namespace CommunityPartners.Controllers
             _context = context;
             _geoCodeRequest = geoCodeRequest;
         }
+        public async Task<IActionResult> ViewPartnerLocation(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var donateService = await _context.DonateServices
+                .FirstOrDefaultAsync(m => m.DonateServiceId == id);
+
+            var partner = await _context.Partners
+               .Include(p => p.IdentityUser)
+               .FirstOrDefaultAsync(m => m.PartnerId == donateService.PartnerId);
+
+            if (partner == null)
+            {
+                return NotFound();
+            }
+
+            return View(partner);
+
+        }
         public async Task <IActionResult> FilterPartnersByRating(MapView mapView, GeoResult geoResult)
         {
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");

@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/ViewDonateService.cshtml";
 }
 
-<h1>View Partner Location</h1>
+<h1>PartnerLocation</h1>
 <style>
     /* Set the size of the div element that contains the map */
     #map {
@@ -28,7 +28,7 @@
             map: map,
 
 
-            title:'@Model.FirstName   @Model.LastName  @Model.PartnerPhone '
+            title:'@Model.FirstName   @Model.LastName @Model.PartnerPhone'
 
 
         });
@@ -55,7 +55,6 @@ coords: { lat: @result.geometry.location.lat, lng: @result.geometry.location.lng
 
 <script src="https://maps.googleapis.com/maps/api/js?key=@APIKEYS.GoogleAPIKey&callback=initMap"
         async defer></script>
-
 
 
 

@@ -56,6 +56,8 @@
                 @*<a asp-action="AcceptService" asp-route-id="@item.DonateServiceId">Accept Service</a>*@
                 <a class="nav-link text-dark" asp-area="" asp-controller="DonateServicePartners" asp-route-id="@item.DonateServiceId" asp-action="Create">Accept Serivce</a>
                 <a class="nav-link text-dark" asp-area="" asp-controller="RateServices" asp-route-id="@item.DonateServiceId" asp-action="Create">Rate Service</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="DonateServices" asp-route-id="@item.DonateServiceId" asp-action="ViewPartnerLocation">View Partner Location</a>
+
             </td>
         </tr>
 }
