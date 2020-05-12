@@ -4,14 +4,16 @@ using CommunityPartners.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CommunityPartners.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200512145122_RateServices3")]
+    partial class RateServices3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,12 +65,6 @@ namespace CommunityPartners.Migrations
 
                     b.Property<int>("PartnerId")
                         .HasColumnType("int");
-
-                    b.Property<string>("PartnerLat")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PartnerLong")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PartnerName")
                         .HasColumnType("nvarchar(max)");
@@ -520,15 +516,15 @@ namespace CommunityPartners.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e4c3eb82-d856-4bb4-9b6e-3b6ae7775503",
-                            ConcurrencyStamp = "60a8a10f-bc4a-4cd6-acd2-8327bc41b35a",
+                            Id = "0e9ee8bf-908c-4739-ac7a-cd1038bb04f4",
+                            ConcurrencyStamp = "8f9b8940-966d-4a3b-9be7-2846773675cf",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "da3f24c1-b477-4439-965c-ee9dc193c211",
-                            ConcurrencyStamp = "54e3bd16-993e-4a80-9ecf-49545bc5318b",
+                            Id = "4677c2ff-fe53-47e8-8610-c84ad032d164",
+                            ConcurrencyStamp = "2aeb8b92-cac2-4344-805f-2f9697c72e48",
                             Name = "Partner",
                             NormalizedName = "PARTNER"
                         });

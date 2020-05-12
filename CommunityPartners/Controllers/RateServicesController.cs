@@ -86,6 +86,13 @@ namespace CommunityPartners.Controllers
             //return View(admin);
             return View(await applicationDbContext.ToListAsync());
         }
+        public async Task<IActionResult> PartnersLocation(int submit)
+        {
+            var applicationDbContext = _context.RateServices.Where(a => a.Rating > submit).ToListAsync();
+            //var partner = _context.Partners.Where(p => p.PartnerId == applicationDbContext.PartnerId).ToListAsync();
+            
+            return View(await applicationDbContext);
+        }
 
         // GET: RateServices/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -128,6 +135,8 @@ namespace CommunityPartners.Controllers
                 rateService.PartnerId = partnerId.PartnerId;
                 rateService.ServiceDescription = donateService.Description;
                 rateService.PartnerName = donateService.PartnerName;
+                rateService.PartnerLat = donateService.PartnerLat;
+                rateService.PartnerLong = donateService.PartnerLong;
                 
                 _context.Add(rateService);
                 await _context.SaveChangesAsync();

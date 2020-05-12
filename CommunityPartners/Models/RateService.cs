@@ -21,6 +21,8 @@ namespace CommunityPartners.Models
         public Result [] results { get; set; }
         public string PartnerName { get; set; }
         public string ServiceDescription { get; set; }
+        public string PartnerLat { get; set; }
+        public string PartnerLong { get; set; }
         
         
         

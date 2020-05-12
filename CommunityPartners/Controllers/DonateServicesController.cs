@@ -155,6 +155,8 @@ namespace CommunityPartners.Controllers
                 var applicationDbContext = _context.Partners.Include(p => p.IdentityUser);
                 donateService.PartnerId = viewerInDb.PartnerId;
                 donateService.PartnerName = viewerInDb.FirstName;
+                donateService.PartnerLat = viewerInDb.PartnerLat;
+                donateService.PartnerLong = viewerInDb.PartnerLong;
                 _context.Add(donateService);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
