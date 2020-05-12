@@ -11,6 +11,8 @@ using System.Security.Claims;
 using System.Reflection.Metadata.Ecma335;
 using Microsoft.EntityFrameworkCore.Internal;
 using System.Security.Cryptography.X509Certificates;
+using Twilio;
+using Twilio.Rest.Api.V2010.Account;
 
 namespace CommunityPartners.Controllers
 {
@@ -127,13 +129,34 @@ namespace CommunityPartners.Controllers
                 donateServicePartners.PartnerId = viewerInDb.PartnerId;
                 var donateServicee = _context.DonateServices.FindAsync(id);
                 donateServicePartners.DonateServiceId = id;
+                donateService.DonateServiceId = id;
+                var phone = donateService.PhoneNumber;
 
+                SendSms(phone).Wait();
                 _context.Add(donateServicePartners);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
            
             return View(donateServicePartners);
+        }
+        public async Task SendSms(string phoneNumber)
+        {
+            
+            const string accountSid = APIKEYS.TwilioSid;
+            const string authToken = APIKEYS.TwilioToken;
+            //string phoneNumber = "";
+
+            phoneNumber = "+1" + phoneNumber;
+
+            //Console.WriteLine(phoneNumber);
+            TwilioClient.Init(accountSid, authToken);
+            var message = await MessageResource.CreateAsync(
+            body: "Someone accepetd your offer!!!",
+            from: new Twilio.Types.PhoneNumber("+19135218316"),
+            to: new Twilio.Types.PhoneNumber(phoneNumber)
+            );
+            Console.WriteLine();
         }
 
         // GET: DonateServicePartners/Edit/5
