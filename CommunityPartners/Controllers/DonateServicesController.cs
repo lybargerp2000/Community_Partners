@@ -157,7 +157,7 @@ namespace CommunityPartners.Controllers
                 donateService.PartnerName = viewerInDb.FirstName;
                 donateService.PartnerLat = viewerInDb.PartnerLat;
                 donateService.PartnerLong = viewerInDb.PartnerLong;
-                donateService.PartnerName = viewerInDb.PartnerPhone;
+                donateService.PhoneNumber = viewerInDb.PartnerPhone;
                 _context.Add(donateService);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

@@ -32,7 +32,7 @@ namespace CommunityPartners.Controllers
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var viewerInDb = _context.Partners.Where(m => m.IdentityUserId == userId).FirstOrDefault();
             var applicationDbContext = _context.Partners.Include(p => p.IdentityUser);
-            var List5 = _context.DonateServices.Where(l => l.PartnerId == viewerInDb.PartnerId).First();
+            var List5 = _context.DonateServices.Where(l => l.PartnerId == viewerInDb.PartnerId).FirstOrDefault();
                 
             var List3 = _context.DonateServicePartnersers.Where(l => l.DonateServiceId == List5.DonateServiceId).ToListAsync();
             
@@ -129,12 +129,17 @@ namespace CommunityPartners.Controllers
                 donateServicePartners.PartnerId = viewerInDb.PartnerId;
                 var donateServicee = _context.DonateServices.FindAsync(id);
                 donateServicePartners.DonateServiceId = id;
+                
                 donateService.DonateServiceId = id;
-                var phone = donateService.PhoneNumber;
+                var phone = _context.DonateServices.Where(p => p.DonateServiceId == id).First();
+                var number = phone.PhoneNumber;
 
-                SendSms(phone).Wait();
+
+                SendSms(number).Wait();
+
                 _context.Add(donateServicePartners);
                 await _context.SaveChangesAsync();
+                
                 return RedirectToAction(nameof(Index));
             }
            
