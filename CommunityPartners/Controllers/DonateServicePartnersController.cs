@@ -32,7 +32,7 @@ namespace CommunityPartners.Controllers
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var viewerInDb = _context.Partners.Where(m => m.IdentityUserId == userId).FirstOrDefault();
             var applicationDbContext = _context.Partners.Include(p => p.IdentityUser);
-            var List5 = _context.DonateServices.Where(l => l.PartnerId == viewerInDb.PartnerId).FirstOrDefault();
+            var List5 = _context.DonateServices.Where(l => l.PartnerId == viewerInDb.PartnerId).First();
                 
             var List3 = _context.DonateServicePartnersers.Where(l => l.DonateServiceId == List5.DonateServiceId).ToListAsync();
             
